@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&amp;family=Inter:wght@300&amp;display=swap');</style>
+  </defs>
+
+  <!-- Mark: two overlapping circles -->
+  <circle cx="178" cy="54" r="30" fill="none" stroke="#6B7B5E" stroke-width="1.6"/>
+  <circle cx="204" cy="54" r="30" fill="none" stroke="#C4795B" stroke-width="1.6"/>
+
+  <!-- Lens intersection fill -->
+  <path d="M 191 27 A 30 30 0 0 0 191 81 A 30 30 0 0 0 191 27 Z" fill="rgba(196,121,91,0.13)"/>
+
+  <!-- Center dot -->
+  <circle cx="191" cy="54" r="3" fill="#C4795B" opacity="0.7"/>
+
+  <!-- Wordmark -->
+  <text x="200" y="130" text-anchor="middle"
+        font-family="'Playfair Display', Georgia, serif"
+        font-size="46" font-style="italic" font-weight="400"
+        fill="#2C2419">ZinSane</text>
+
+  <!-- Decorative line -->
+  <line x1="88" y1="143" x2="312" y2="143"
+        stroke="#C4795B" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- Tagline -->
+  <text x="200" y="165" text-anchor="middle"
+        font-family="'Inter', Arial, sans-serif"
+        font-size="9.5" font-weight="300"
+        fill="#6B7B5E" letter-spacing="4"
+        text-transform="uppercase">BOOST YOUR LONGEVITY</text>
+</svg>

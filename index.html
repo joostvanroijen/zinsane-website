@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZinSane — Vitaliteitscoaching & Test-based Nutrition</title>
+<meta name="description" content="ZinSane combineert wetenschappelijk onderbouwde bloedtesten met persoonlijke vitaliteitscoaching. Meten is weten. Ontdek wat jouw lichaam nodig heeft.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --cream: #F5F0EB;
+  --cream-dark: #E8E0D8;
+  --brown: #2C2419;
+  --brown-light: #5C4A35;
+  --olive: #6B7B5E;
+  --terracotta: #C4795B;
+  --white: #FDFBF9;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; color: var(--brown); background: var(--white); font-weight: 300; line-height: 1.8; font-size: 16px; }
+
+/* ===================== NAV ===================== */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  padding: 24px 60px;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: all 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(253,251,249,0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 16px 60px;
+  box-shadow: 0 1px 24px rgba(44,36,25,0.06);
+}
+
+/* Logo: SVG inline logo — adapts to scrolled/unscrolled nav */
+.nav-logo-link { text-decoration: none; display: flex; align-items: center; }
+.nav-logo-svg { height: 36px; width: auto; }
+nav:not(.scrolled) .mark-c1 { stroke: rgba(253,251,249,0.75); }
+nav:not(.scrolled) .mark-c2 { stroke: rgba(253,251,249,0.9); }
+nav:not(.scrolled) .mark-lens { fill: rgba(253,251,249,0.12); }
+nav:not(.scrolled) .mark-dot { fill: rgba(253,251,249,0.8); }
+nav:not(.scrolled) .logo-wordmark { fill: rgba(253,251,249,0.95); }
+
+/* Nav links: white/cream when unscrolled, brown when scrolled */
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a {
+  text-decoration: none;
+  color: rgba(253,251,249,0.85);
+  font-size: 0.85rem; font-weight: 400;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  transition: color 0.3s;
+}
+nav.scrolled .nav-links a { color: var(--brown-light); }
+.nav-links a:hover { color: var(--terracotta); }
+nav.scrolled .nav-links a:hover { color: var(--terracotta); }
+
+/* Hamburger: white when unscrolled */
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; background: none; border: none;
+}
+.hamburger span {
+  width: 24px; height: 1.5px;
+  background: rgba(253,251,249,0.9);
+  transition: 0.3s;
+}
+nav.scrolled .hamburger span { background: var(--brown); }
+
+/* ===================== HERO ===================== */
+.hero { min-height: 100vh; position: relative; display: flex; align-items: center; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(253,251,249,0.92) 45%, rgba(253,251,249,0.2) 100%);
+}
+.hero-content { position: relative; z-index: 2; padding: 60px 60px; max-width: 580px; }
+.hero-label {
+  font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--olive); margin-bottom: 30px; font-weight: 500;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.4rem; font-weight: 400; line-height: 1.25;
+  color: var(--brown); margin-bottom: 24px;
+}
+.hero p { color: var(--brown-light); margin-bottom: 40px; font-size: 1.05rem; max-width: 440px; }
+.hero-ctas { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+.btn-primary {
+  display: inline-block; padding: 16px 44px;
+  border: 1px solid var(--brown); color: var(--brown);
+  text-decoration: none; font-size: 0.8rem; letter-spacing: 2px;
+  text-transform: uppercase; transition: all 0.4s ease; font-weight: 400; border-radius: 60px;
+}
+.btn-primary:hover { background: var(--brown); color: var(--white); }
+.btn-secondary {
+  display: inline-block;
+  color: var(--brown-light);
+  text-decoration: none; font-size: 0.8rem; letter-spacing: 1.5px;
+  text-transform: uppercase; transition: all 0.3s ease; font-weight: 400;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+.btn-secondary:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+
+/* ===================== SOCIAL PROOF BAR ===================== */
+.social-proof-bar {
+  background: var(--cream);
+  padding: 22px 60px;
+  display: flex; justify-content: center; align-items: center;
+  gap: 64px;
+  border-bottom: 1px solid var(--cream-dark);
+}
+.proof-item {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.82rem; color: var(--brown-light);
+  letter-spacing: 0.5px;
+}
+.proof-icon {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--white); border: 1px solid var(--cream-dark);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.proof-icon svg { width: 16px; height: 16px; }
+.proof-item strong { color: var(--brown); font-weight: 500; }
+
+/* ===================== FULL WIDTH IMAGE BREAK ===================== */
+.image-break { width: 100%; height: 60vh; overflow: hidden; }
+.image-break img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
+
+/* ===================== SECTIONS ===================== */
+section { padding: 120px 60px; }
+.section-label {
+  font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--olive); margin-bottom: 16px; font-weight: 500;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem; font-weight: 400; margin-bottom: 20px; line-height: 1.3;
+}
+.section-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; font-weight: 400; color: var(--brown-light);
+  margin-bottom: 40px; font-style: italic;
+}
+
+/* ===================== FILOSOFIE ===================== */
+.filosofie { background: var(--white); }
+.filosofie-inner { max-width: 750px; margin: 0 auto; }
+.filosofie-inner p { color: var(--brown-light); margin-bottom: 22px; font-size: 1.05rem; }
+.pull-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-style: italic; color: var(--brown); line-height: 1.5;
+  margin: 70px auto; padding: 50px 0;
+  border-top: 1px solid var(--cream-dark); border-bottom: 1px solid var(--cream-dark);
+  text-align: center; max-width: 800px;
+}
+
+/* ===================== AANBOD ===================== */
+.aanbod { background: var(--cream); border-radius: 40px; margin: 0 30px; padding: 120px 60px; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
+
+/* Featured card wrapper for badge */
+.card-wrapper { position: relative; }
+.meest-gekozen-badge {
+  position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
+  background: var(--terracotta); color: var(--white);
+  font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase;
+  font-weight: 500; padding: 6px 18px; border-radius: 40px;
+  white-space: nowrap; z-index: 2;
+  box-shadow: 0 4px 16px rgba(196,121,91,0.35);
+}
+
+.card {
+  background: var(--white); padding: 48px 38px;
+  border-radius: 24px; border: 1px solid transparent;
+  transition: all 0.4s ease; height: 100%;
+}
+.card:hover {
+  border-color: var(--cream-dark);
+  box-shadow: 0 12px 48px rgba(44,36,25,0.06);
+  transform: translateY(-4px);
+}
+.card.featured { background: var(--brown); color: var(--white); }
+.card.featured .card-desc { color: rgba(255,255,255,0.65); }
+.card.featured ul li { color: rgba(255,255,255,0.7); border-bottom-color: rgba(255,255,255,0.1); }
+.card.featured ul li::before { color: var(--terracotta); }
+.card.featured .btn-card { border-color: rgba(255,255,255,0.3); color: var(--white); }
+.card.featured .btn-card:hover { background: var(--white); color: var(--brown); }
+.card.featured .card-price { color: rgba(255,255,255,0.55); }
+.card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; margin-bottom: 6px;
+}
+.card-price {
+  font-size: 0.8rem; color: var(--brown-light); letter-spacing: 0.5px;
+  margin-bottom: 12px; font-style: italic;
+}
+.card-desc { color: var(--brown-light); font-size: 0.92rem; margin-bottom: 28px; font-style: italic; }
+.card ul { list-style: none; margin-bottom: 32px; }
+.card ul li {
+  padding: 9px 0; border-bottom: 1px solid var(--cream);
+  color: var(--brown-light); font-size: 0.9rem;
+}
+.card ul li::before { content: '—'; margin-right: 12px; color: var(--terracotta); }
+.btn-card {
+  display: inline-block; padding: 13px 34px;
+  border: 1px solid var(--brown); color: var(--brown);
+  text-decoration: none; font-size: 0.78rem; letter-spacing: 1.5px;
+  text-transform: uppercase; transition: all 0.4s; border-radius: 60px;
+}
+.btn-card:hover { background: var(--brown); color: var(--white); }
+
+/* Urgency note */
+.urgency-note {
+  font-size: 0.78rem; color: var(--terracotta);
+  margin-top: 14px; letter-spacing: 0.3px;
+  display: block;
+}
+
+/* ===================== TESTIMONIALS ===================== */
+.testimonials { background: var(--white); }
+.testimonials-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 30px; margin-top: 60px;
+}
+.testimonial-card {
+  background: var(--cream); border-radius: 24px;
+  padding: 42px 36px; position: relative;
+  border: 1px solid var(--cream-dark);
+  transition: all 0.3s ease;
+}
+.testimonial-card:hover {
+  box-shadow: 0 12px 40px rgba(44,36,25,0.07);
+  transform: translateY(-3px);
+}
+.testimonial-quote-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem; line-height: 1; color: var(--terracotta);
+  opacity: 0.25; position: absolute; top: 20px; left: 32px;
+  font-weight: 700;
+}
+.testimonial-stars {
+  display: flex; gap: 4px; margin-bottom: 20px;
+}
+.testimonial-stars svg {
+  width: 15px; height: 15px; fill: var(--terracotta);
+}
+.testimonial-text {
+  font-size: 0.95rem; color: var(--brown-light);
+  line-height: 1.75; font-style: italic;
+  margin-bottom: 26px; position: relative; z-index: 1;
+}
+.testimonial-author strong {
+  display: block; font-size: 0.88rem; font-weight: 500; color: var(--brown);
+  font-style: normal;
+}
+.testimonial-author span {
+  font-size: 0.78rem; color: var(--olive); letter-spacing: 0.5px;
+}
+
+/* ===================== WEBSHOP ===================== */
+.webshop { background: var(--cream); border-radius: 40px; margin: 0 30px; padding: 120px 60px; }
+.webshop-intro {
+  text-align: center; max-width: 580px; margin: 0 auto 60px;
+}
+.webshop-intro p { color: var(--brown-light); font-size: 1.0rem; }
+.webshop-note {
+  text-align: center; margin-top: 40px;
+  font-size: 0.8rem; color: var(--olive); letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.webshop-note::before { content: '— '; }
+.webshop-note::after { content: ' —'; }
+.products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.product-card {
+  background: var(--white); border-radius: 20px;
+  padding: 42px 32px; border: 1px solid transparent;
+  transition: all 0.4s ease;
+}
+.product-card:hover {
+  border-color: var(--cream-dark);
+  box-shadow: 0 10px 40px rgba(44,36,25,0.06);
+  transform: translateY(-3px);
+}
+.product-icon {
+  width: 50px; height: 50px; border-radius: 16px;
+  background: var(--cream); display: flex; align-items: center; justify-content: center;
+  margin-bottom: 22px;
+}
+.product-icon svg { width: 24px; height: 24px; }
+.product-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem; margin-bottom: 12px; color: var(--brown);
+}
+.product-desc { color: var(--brown-light); font-size: 0.9rem; margin-bottom: 28px; line-height: 1.7; }
+.btn-product {
+  display: inline-block; padding: 11px 28px;
+  border: 1px solid var(--cream-dark); color: var(--brown-light);
+  text-decoration: none; font-size: 0.75rem; letter-spacing: 1.5px;
+  text-transform: uppercase; transition: all 0.3s; border-radius: 60px;
+}
+.btn-product:hover { border-color: var(--brown); color: var(--brown); background: var(--cream); }
+
+/* ===================== OVER SABINE ===================== */
+.over { background: var(--white); }
+.over-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  max-width: 1100px; margin: 0 auto;
+}
+.over-image { height: 650px; overflow: hidden; border-radius: 24px; }
+.over-image img { width: 100%; height: 100%; object-fit: cover; object-position: center center; }
+.over-text h3 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: 6px; }
+.over-text .subtitle { color: var(--olive); font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 18px; }
+.credential-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.badge {
+  display: inline-block; padding: 6px 14px;
+  background: rgba(107,123,94,0.1); border: 1px solid rgba(107,123,94,0.25);
+  color: var(--olive); border-radius: 40px;
+  font-size: 0.72rem; letter-spacing: 0.8px; font-weight: 500;
+  text-transform: uppercase;
+}
+.over-text p { color: var(--brown-light); margin-bottom: 20px; }
+.mission {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-style: italic; color: var(--terracotta);
+  margin-top: 30px; line-height: 1.6;
+}
+
+/* ===================== PARTNER ===================== */
+.partner { background: var(--cream); border-radius: 40px; margin: 0 30px; }
+.partner-inner { max-width: 750px; margin: 0 auto; text-align: center; }
+.partner-inner p { color: var(--brown-light); margin-bottom: 18px; }
+.partner-inner ul {
+  list-style: none; margin: 30px 0; text-align: left;
+  max-width: 500px; margin-left: auto; margin-right: auto;
+}
+.partner-inner ul li { padding: 10px 0; color: var(--brown-light); font-size: 0.95rem; }
+.partner-inner ul li::before { content: '—'; margin-right: 12px; color: var(--olive); }
+
+/* ===================== FAQ ===================== */
+.faq { background: var(--cream); border-radius: 40px; margin: 0 30px; padding: 120px 60px; }
+.faq-inner { max-width: 760px; margin: 0 auto; }
+.faq-list { margin-top: 50px; }
+.faq-item {
+  border-bottom: 1px solid var(--cream-dark);
+  overflow: hidden;
+}
+.faq-item:first-child { border-top: 1px solid var(--cream-dark); }
+.faq-question {
+  width: 100%; background: none; border: none;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 24px 0; cursor: pointer;
+  font-family: 'Inter', sans-serif; font-size: 0.98rem;
+  color: var(--brown); font-weight: 400; text-align: left;
+  transition: color 0.2s;
+  gap: 20px;
+}
+.faq-question:hover { color: var(--terracotta); }
+.faq-chevron {
+  width: 20px; height: 20px; flex-shrink: 0;
+  color: var(--olive); transition: transform 0.35s ease;
+}
+.faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--terracotta); }
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+.faq-answer-inner {
+  padding-bottom: 24px;
+  font-size: 0.93rem; color: var(--brown-light); line-height: 1.8;
+}
+.faq-item.open .faq-answer { max-height: 400px; }
+
+/* ===================== CONTACT ===================== */
+.contact { background: var(--white); }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; margin-top: 40px;
+  max-width: 900px; margin-left: auto; margin-right: auto;
+}
+.contact-info p { color: var(--brown-light); margin-bottom: 16px; }
+.contact-info a { color: var(--terracotta); text-decoration: none; }
+.contact-info a:hover { text-decoration: underline; }
+.contact-method {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 16px;
+}
+.contact-method-icon {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--cream); border: 1px solid var(--cream-dark);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.contact-method-icon svg { width: 16px; height: 16px; }
+.whatsapp-note {
+  font-size: 0.75rem; color: var(--olive);
+  margin-top: 4px; letter-spacing: 0.3px;
+}
+.form-group { margin-bottom: 24px; }
+.form-group label {
+  display: block; font-size: 0.75rem; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--olive); margin-bottom: 8px;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%; padding: 16px 20px;
+  border: 1px solid var(--cream-dark); border-radius: 16px;
+  background: var(--cream); font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; color: var(--brown); outline: none;
+  transition: border-color 0.3s; appearance: none;
+  -webkit-appearance: none;
+}
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235C4A35' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  padding-right: 44px; cursor: pointer;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus { border-color: var(--terracotta); }
+.form-group textarea { resize: vertical; min-height: 110px; }
+.btn-submit {
+  padding: 16px 50px; border: none;
+  background: var(--brown); color: var(--white);
+  font-family: 'Inter', sans-serif; font-size: 0.8rem;
+  letter-spacing: 2px; text-transform: uppercase;
+  cursor: pointer; transition: all 0.4s; border-radius: 60px;
+}
+.btn-submit:hover { background: var(--brown-light); }
+
+/* ===================== FOOTER ===================== */
+footer {
+  background: var(--brown); color: var(--white);
+  padding: 70px 60px 50px;
+}
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 60px; padding-bottom: 50px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-brand .nav-logo-footer {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 600; color: var(--white);
+  text-decoration: none; letter-spacing: 1px;
+  display: block; margin-bottom: 18px;
+}
+.footer-tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 0.95rem;
+  color: rgba(255,255,255,0.5); margin-bottom: 26px;
+}
+.footer-social { display: flex; gap: 14px; }
+.footer-social a {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.6); text-decoration: none;
+  transition: all 0.3s;
+}
+.footer-social a:hover {
+  border-color: rgba(255,255,255,0.4);
+  color: var(--white);
+  background: rgba(255,255,255,0.06);
+}
+.footer-social a svg { width: 16px; height: 16px; }
+.footer-col h4 {
+  font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); margin-bottom: 20px; font-weight: 500;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col ul li a {
+  text-decoration: none; color: rgba(255,255,255,0.6);
+  font-size: 0.88rem; transition: color 0.2s;
+}
+.footer-col ul li a:hover { color: var(--white); }
+.footer-col p { color: rgba(255,255,255,0.55); font-size: 0.88rem; margin-bottom: 10px; }
+.footer-bottom {
+  max-width: 1100px; margin: 0 auto;
+  padding-top: 32px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+.footer-kvk { font-size: 0.76rem; color: rgba(255,255,255,0.3); }
+
+/* ===================== ANIMATIONS ===================== */
+.fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ===================== MOBILE ===================== */
+@media (max-width: 900px) {
+  nav { padding: 20px 28px; }
+  nav.scrolled { padding: 14px 28px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .nav-links.open {
+    display: flex; flex-direction: column;
+    position: absolute; top: 70px; right: 28px;
+    background: rgba(253,251,249,0.96); backdrop-filter: blur(14px);
+    padding: 30px; gap: 24px; border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  }
+  /* Nav links inside open menu should be brown */
+  .nav-links.open a { color: var(--brown-light) !important; }
+
+  section { padding: 80px 28px; }
+  .hero-content { padding: 120px 28px 60px; }
+  .hero h1 { font-size: 2.4rem; }
+  .hero-overlay { background: linear-gradient(to bottom, rgba(253,251,249,0.92) 50%, rgba(253,251,249,0.4) 100%); }
+  .image-break { height: 40vh; }
+
+  .social-proof-bar { flex-direction: column; gap: 20px; padding: 28px 28px; }
+
+  .aanbod { margin: 0 16px; padding: 80px 28px; border-radius: 28px; }
+  .cards { grid-template-columns: 1fr; }
+
+  .testimonials-grid { grid-template-columns: 1fr; }
+
+  .webshop { margin: 0 16px; padding: 80px 28px; border-radius: 28px; }
+  .products { grid-template-columns: 1fr; }
+
+  .over-grid { grid-template-columns: 1fr; gap: 40px; }
+  .over-image { height: 400px; }
+
+  .partner { margin: 0 16px; border-radius: 28px; }
+
+  .faq { margin: 0 16px; padding: 80px 28px; border-radius: 28px; }
+
+  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .pull-quote { font-size: 1.5rem; }
+  .section-title { font-size: 2rem; }
+
+  .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  footer { padding: 60px 28px 40px; }
+}
+
+@media (max-width: 600px) {
+  .hero-ctas { gap: 14px; }
+  .credential-badges { gap: 8px; }
+  .footer-social { gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========================== NAV ========================== -->
+<nav id="navbar">
+  <a href="#" class="nav-logo-link">
+    <svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 44">
+      <circle cx="15" cy="22" r="11.5" fill="none" stroke="#6B7B5E" stroke-width="1.3" class="mark-c1"/>
+      <circle cx="25" cy="22" r="11.5" fill="none" stroke="#C4795B" stroke-width="1.3" class="mark-c2"/>
+      <path d="M 20 12 A 11.5 11.5 0 0 0 20 32 A 11.5 11.5 0 0 0 20 12 Z" fill="rgba(196,121,91,0.14)" class="mark-lens"/>
+      <circle cx="20" cy="22" r="2" fill="#C4795B" opacity="0.65" class="mark-dot"/>
+      <text x="44" y="30" font-family="'Playfair Display', Georgia, serif" font-size="23" font-style="italic" font-weight="400" fill="#2C2419" class="logo-wordmark">ZinSane</text>
+    </svg>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#filosofie">Filosofie</a></li>
+    <li><a href="#aanbod">Aanbod</a></li>
+    <li><a href="#over">Over Sabine</a></li>
+    <li><a href="#partner">Partner</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ========================== HERO ========================== -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="Sabine v Roijen_webversie-10.jpg" alt="Sabine van Roijen — ZinSane Vitaliteitscoach" loading="eager" style="object-position: center 20%;">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-label">Vitaliteitscoaching &amp; Test-based Nutrition</p>
+    <h1>Waar inzicht in je lichaam begint met meten</h1>
+    <p>ZinSane combineert wetenschappelijk onderbouwde bloedtesten met persoonlijke vitaliteitscoaching. Geen aannames. Alleen wat jouw lichaam nodig heeft.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Maak een afspraak</a>
+      <a href="#aanbod" class="btn-secondary">Bekijk aanbod &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================== SOCIAL PROOF BAR ========================== -->
+<div class="social-proof-bar">
+  <div class="proof-item fade-in">
+    <div class="proof-icon">
+      <!-- People icon -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--olive)">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+    </div>
+    <div>
+      <strong>47+ tevreden klanten</strong>
+    </div>
+  </div>
+  <div class="proof-item fade-in">
+    <div class="proof-icon">
+      <!-- Beaker/test icon -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--olive)">
+        <path d="M14.5 2v17.5c0 1.4-1.1 2.5-2.5 2.5s-2.5-1.1-2.5-2.5V2"/><path d="M8.5 2h7"/><path d="M14.5 16h-5"/>
+      </svg>
+    </div>
+    <div>
+      <strong>Test-based aanpak</strong>
+    </div>
+  </div>
+  <div class="proof-item fade-in">
+    <div class="proof-icon">
+      <!-- Certificate icon -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--olive)">
+        <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+      </svg>
+    </div>
+    <div>
+      <strong>Gecertificeerd vitaloog</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ========================== FILOSOFIE ========================== -->
+<section class="filosofie" id="filosofie">
+  <div class="filosofie-inner fade-in">
+    <p class="section-label">Filosofie</p>
+    <h2 class="section-title">Meten is weten</h2>
+    <p>Bij ZinSane geloven we dat echte gezondheid begint bij inzicht. Niet bij aannames, trends of standaardadviezen, maar bij meten wat jouw lichaam daadwerkelijk nodig heeft.</p>
+    <p>Veel mensen slikken supplementen "voor de zekerheid". Maar zonder inzicht weet je eigenlijk niet of ze iets bijdragen.</p>
+    <p>Met een eenvoudige bloedtest wordt onder andere de omega-6/omega-3 balans in je lichaam bepaald. Deze balans speelt een cruciale rol bij celgezondheid, energie, herstel en ontstekingsprocessen.</p>
+    <p>Op basis van jouw persoonlijke testresultaten ontstaat een helder beeld van wat jouw lichaam nodig heeft. Pas daarna volgt een advies over voeding, leefstijl en gerichte supplementen.</p>
+    <p>ZinSane combineert deze test-based aanpak met persoonlijke vitaliteitscoaching, omdat duurzame gezondheid nooit uit één element bestaat. Voeding, beweging, herstel en mentale balans versterken elkaar.</p>
+  </div>
+  <p class="pull-quote fade-in">Een gezond lichaam is het fundament onder alles wat je wilt bereiken.</p>
+</section>
+
+<!-- ========================== IMAGE BREAK 1 ========================== -->
+<div class="image-break" style="height: 85vh;">
+  <img src="Sabine v Roijen_webversie-16.jpg" alt="ZinSane lifestyle" loading="lazy" style="object-position: center 40%;">
+</div>
+
+<!-- ========================== AANBOD ========================== -->
+<section class="aanbod" id="aanbod">
+  <div class="fade-in" style="text-align:center; max-width:600px; margin:0 auto;">
+    <p class="section-label">Aanbod</p>
+    <h2 class="section-title">Drie manieren om met ZinSane te werken</h2>
+    <p class="section-subtitle">Voor mensen die hun gezondheid serieus nemen</p>
+  </div>
+  <div class="cards">
+
+    <!-- Basic -->
+    <div class="card-wrapper">
+      <div class="card fade-in">
+        <p class="card-name">ZinSane Basic</p>
+        <p class="card-price">Vanaf €195</p>
+        <p class="card-desc">Voor wie inzicht wil krijgen in zijn lichaam en gericht advies wil.</p>
+        <ul>
+          <li>Persoonlijke intake</li>
+          <li>Analyse van je testresultaten</li>
+          <li>Persoonlijk supplement- en leefstijladvies</li>
+          <li>Vervolggesprek</li>
+        </ul>
+        <a href="#contact" class="btn-card">Meer informatie</a>
+      </div>
+    </div>
+
+    <!-- Premium (featured) -->
+    <div class="card-wrapper">
+      <div class="meest-gekozen-badge">Meest gekozen</div>
+      <div class="card featured fade-in">
+        <p class="card-name">ZinSane Premium</p>
+        <p class="card-price">Vanaf €495</p>
+        <p class="card-desc">Voor wie zijn energie, herstel en mentale scherpte structureel wil verbeteren.</p>
+        <ul>
+          <li>Uitgebreide intake</li>
+          <li>Nulmeting en hermeting met bloedtesten</li>
+          <li>Persoonlijk test-based supplementplan</li>
+          <li>Vier diepgaande coachingssessies</li>
+          <li>Begeleiding bij leefstijloptimalisatie</li>
+        </ul>
+        <a href="#contact" class="btn-card">Start jouw traject</a>
+        <span class="urgency-note">&#8594; Nog 3 plekken beschikbaar in april</span>
+      </div>
+    </div>
+
+    <!-- Partner -->
+    <div class="card-wrapper">
+      <div class="card fade-in">
+        <p class="card-name">ZinSane Partner</p>
+        <p class="card-price">Gratis kennismaking</p>
+        <p class="card-desc">Voor mensen met een passie voor gezondheid én ondernemerschap.</p>
+        <ul>
+          <li>Toegang tot wereldwijd Zinzino netwerk</li>
+          <li>Opleiding tot vitaliteitsadviseur</li>
+          <li>Persoonlijke begeleiding en mentoring</li>
+        </ul>
+        <a href="#partner" class="btn-card">Meer informatie</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========================== TESTIMONIALS ========================== -->
+<section class="testimonials" id="testimonials">
+  <div class="fade-in" style="text-align:center; max-width:600px; margin:0 auto 0;">
+    <p class="section-label">Ervaringen</p>
+    <h2 class="section-title">Wat klanten zeggen</h2>
+    <p class="section-subtitle">Test-based resultaten die je voelt</p>
+  </div>
+  <div class="testimonials-grid">
+
+    <div class="testimonial-card fade-in">
+      <div class="testimonial-quote-mark">&ldquo;</div>
+      <div class="testimonial-stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p class="testimonial-text">Na de nulmeting bleek mijn omega-6/3 ratio volledig uit balans. Drie maanden later meet ik 4:1 en voel ik het verschil dagelijks in mijn energie en focus.</p>
+      <div class="testimonial-author">
+        <strong>Marijn</strong>
+        <span>42 jaar &mdash; Manager</span>
+      </div>
+    </div>
+
+    <div class="testimonial-card fade-in">
+      <div class="testimonial-quote-mark">&ldquo;</div>
+      <div class="testimonial-stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p class="testimonial-text">Eindelijk concrete inzichten in plaats van vage adviezen. Meten, dan weten &mdash; dat is wat ZinSane doet. Mijn slaap is drastisch verbeterd.</p>
+      <div class="testimonial-author">
+        <strong>Elisabeth</strong>
+        <span>38 jaar &mdash; Ondernemer</span>
+      </div>
+    </div>
+
+    <div class="testimonial-card fade-in">
+      <div class="testimonial-quote-mark">&ldquo;</div>
+      <div class="testimonial-stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p class="testimonial-text">De test gaf inzicht in wat ik al jaren voelde maar niet kon verklaren. De aanpak van Sabine is persoonlijk, wetenschappelijk en effectief.</p>
+      <div class="testimonial-author">
+        <strong>Pieter</strong>
+        <span>51 jaar &mdash; Directeur</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========================== IMAGE BREAK 2 ========================== -->
+<div class="image-break" style="margin-top: 0; height: 85vh;">
+  <img src="Sabine v Roijen_webversie-17.jpg" alt="Sabine van Roijen in beweging" loading="lazy" style="object-position: center 25%;">
+</div>
+
+<!-- ========================== WEBSHOP TEASER ========================== -->
+<section class="webshop" id="supplementen">
+  <div class="webshop-intro fade-in">
+    <p class="section-label">Supplementen</p>
+    <h2 class="section-title">Zinzino Supplementen</h2>
+    <p>Wetenschappelijk geformuleerde supplementen op basis van jouw testresultaten. Direct te bestellen.</p>
+  </div>
+  <div class="products">
+
+    <div class="product-card fade-in">
+      <div class="product-icon">
+        <!-- Drop icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--olive)">
+          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+        </svg>
+      </div>
+      <p class="product-name">BalanceOil+</p>
+      <p class="product-desc">De slimste weg naar een gezonde omega-balans. Op basis van visolie en extra vierge olijfolie.</p>
+      <a href="#contact" class="btn-product">Meer info</a>
+    </div>
+
+    <div class="product-card fade-in">
+      <div class="product-icon">
+        <!-- Sun/energy icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--olive)">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      </div>
+      <p class="product-name">Viva+</p>
+      <p class="product-desc">Dagelijkse multivitamine met probiotica. Compleet en gebalanceerd.</p>
+      <a href="#contact" class="btn-product">Meer info</a>
+    </div>
+
+    <div class="product-card fade-in">
+      <div class="product-icon">
+        <!-- Leaf/nature icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--olive)">
+          <path d="M2 2s7 0 12 5c2.5 2.5 3.5 5.5 3.5 9.5 0 0-4.5-1-7.5-4S5 5.5 5 2"/><path d="M2 22c0-5 2-9 5-12"/>
+        </svg>
+      </div>
+      <p class="product-name">ZinoBiotic+</p>
+      <p class="product-desc">Vezelmix voor een gezonde darmflora. Ondersteunt gewichtsbeheer en energieniveau.</p>
+      <a href="#contact" class="btn-product">Meer info</a>
+    </div>
+
+  </div>
+  <p class="webshop-note fade-in">Beschikbaar via ZinSane partnership</p>
+</section>
+
+<!-- ========================== OVER SABINE ========================== -->
+<section class="over" id="over">
+  <div class="over-grid">
+    <div class="over-image fade-in">
+      <img src="Sabine v Roijen_webversie-4.jpg" alt="Sabine van Roijen — Vitaliteitscoach" loading="lazy">
+    </div>
+    <div class="over-text fade-in">
+      <p class="section-label">Over</p>
+      <h3>Sabine van Roijen</h3>
+      <p class="subtitle">Vitaloog, coach, ondernemer</p>
+      <div class="credential-badges">
+        <span class="badge">Gecertificeerd Zinzino Partner</span>
+        <span class="badge">20+ jaar ervaring</span>
+        <span class="badge">HYROX Atleet</span>
+      </div>
+      <p>Ik ben al meer dan twintig jaar werkzaam in het bedrijfsleven als begeleider van mensen in hun persoonlijke en professionele ontwikkeling.</p>
+      <p>Vitaliteit is altijd een rode draad geweest in mijn leven. Ik geloof sterk in de verbinding tussen lichaam en geest. Wanneer je lichaam in balans is, ontstaat er ruimte voor energie, veerkracht en levensplezier.</p>
+      <p>De afgelopen jaren ben ik me steeds verder gaan verdiepen in voeding, leefstijl en preventieve gezondheid. Sport en beweging zijn een vast onderdeel van mijn leven; krachttraining en HYROX-training geven mij energie en focus.</p>
+      <p>Toen ik in aanraking kwam met test-based nutrition werd voor mij iets fundamenteels duidelijk: gezondheid begint bij inzicht in je lichaam.</p>
+      <p class="mission">Bijdragen aan een wereld waarin mensen gezond, energiek en bewust ouder worden.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================== PARTNER ========================== -->
+<section class="partner" id="partner">
+  <div class="partner-inner fade-in">
+    <p class="section-label">Partner worden</p>
+    <h2 class="section-title">Bouw mee aan een gezondere wereld</h2>
+    <p>Naast coaching biedt ZinSane ook de mogelijkheid om partner te worden van Zinzino, een internationaal gezondheidsbedrijf dat zich richt op test-based nutrition.</p>
+    <ul>
+      <li>Help je mensen inzicht te krijgen in hun gezondheid</li>
+      <li>Adviseer je over test-based supplementen</li>
+      <li>Bouw je een eigen netwerk van klanten en partners</li>
+      <li>Maak je deel uit van een internationale community</li>
+    </ul>
+    <p>Via ZinSane krijg je persoonlijke begeleiding en toegang tot kennis, trainingen en een wereldwijd netwerk.</p>
+    <a href="#contact" class="btn-primary" style="margin-top:20px;">Neem contact op</a>
+  </div>
+</section>
+
+<!-- ========================== FAQ ========================== -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="fade-in">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-title">Veelgestelde vragen</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Hoe werkt de bloedtest precies?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Je ontvangt een eenvoudige thuistestkit. Met een kleine vingerprik neem je zelf een bloedmonster af. Het laboratorium analyseert je omega-6/omega-3 balans en andere biomarkers. De resultaten zijn binnen 10 dagen beschikbaar.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Wat is een gezonde omega-6/omega-3 ratio?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Een optimale ratio ligt tussen 1:1 en 3:1. De meeste Westerse mensen hebben een ratio van 10:1 tot 25:1 &mdash; ver uit balans door voeding en leefstijl. Dit beïnvloedt energie, herstel en ontstekingsprocessen.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Verschilt ZinSane van een reguliere diëtist?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            ZinSane werkt test-based: geen standaardadviezen, maar gerichte begeleiding op basis van jouw biomarkers. De combinatie van vitaliteitscoaching en test-based nutrition is uniek in Nederland.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Kan ik supplementen ook direct bestellen?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Ja. Via ZinSane heb je toegang tot Zinzino-producten die je direct kunt bestellen, ook zonder coaching traject. Neem contact op voor meer informatie.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Hoe lang duurt een Premium traject?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Een ZinSane Premium traject loopt over 3 maanden. Je start met een nulmeting, gevolgd door vier coachingssessies. Na 3 maanden volgt een hermeting om je voortgang te meten.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Is dit ook geschikt voor topsporters of professionals?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Absoluut. Sabine begeleidt zowel ambitieuze professionals als sporters die hun herstel, energie en prestaties willen optimaliseren op basis van biodata.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========================== IMAGE BREAK 3 ========================== -->
+<div class="image-break">
+  <img src="Sabine v Roijen_webversie-20.jpg" alt="ZinSane movement" loading="lazy" style="object-position: center 18%;">
+</div>
+
+<!-- ========================== CONTACT ========================== -->
+<section class="contact" id="contact">
+  <div class="fade-in" style="text-align:center; margin-bottom:20px;">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Neem contact op</h2>
+  </div>
+  <div class="contact-grid">
+
+    <div class="contact-info fade-in">
+      <p>Benieuwd wat ZinSane voor jou kan betekenen? Neem vrijblijvend contact op voor een kennismaking.</p>
+
+      <div class="contact-method">
+        <div class="contact-method-icon">
+          <!-- Email icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--olive)">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div>
+          <strong style="font-size:0.85rem; color:var(--brown);">Email</strong><br>
+          <a href="mailto:sabine@zinsane.nl">sabine@zinsane.nl</a>
+        </div>
+      </div>
+
+      <div class="contact-method">
+        <div class="contact-method-icon">
+          <!-- WhatsApp icon -->
+          <svg viewBox="0 0 24 24" fill="currentColor" style="color:var(--olive)">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+          </svg>
+        </div>
+        <div>
+          <strong style="font-size:0.85rem; color:var(--brown);">WhatsApp</strong><br>
+          <a href="https://wa.me/31652041675" target="_blank" rel="noopener">+31 6 52 04 16 75</a>
+          <p class="whatsapp-note">Stuur een bericht &mdash; we reageren snel</p>
+        </div>
+      </div>
+
+      <div class="contact-method">
+        <div class="contact-method-icon">
+          <!-- Location pin icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--olive)">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div>
+          <strong style="font-size:0.85rem; color:var(--brown);">Locatie</strong><br>
+          <span style="color:var(--brown-light); font-size:0.9rem;">Houten, Nederland</span>
+        </div>
+      </div>
+    </div>
+
+    <form class="fade-in" onsubmit="event.preventDefault()">
+      <div class="form-group">
+        <label for="naam">Naam</label>
+        <input type="text" id="naam" name="naam" placeholder="Jouw naam" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="jouw@email.nl" required>
+      </div>
+      <div class="form-group">
+        <label for="interesse">Ik ben geïnteresseerd in</label>
+        <select id="interesse" name="interesse">
+          <option value="" disabled selected>Maak een keuze</option>
+          <option value="basic">ZinSane Basic</option>
+          <option value="premium">ZinSane Premium</option>
+          <option value="partner">ZinSane Partner</option>
+          <option value="supplementen">Supplementen</option>
+          <option value="overig">Overig</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="bericht">Bericht</label>
+        <textarea id="bericht" name="bericht" rows="4" placeholder="Vertel kort over jouw situatie en wensen..."></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Verstuur bericht</button>
+    </form>
+
+  </div>
+</section>
+
+<!-- ========================== FOOTER ========================== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo-footer">ZinSane</a>
+      <p class="footer-tagline">Meet je lichaam. Herstel je energie.</p>
+      <div class="footer-social">
+        <!-- Instagram -->
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Navigatie</h4>
+      <ul>
+        <li><a href="#filosofie">Filosofie</a></li>
+        <li><a href="#aanbod">Aanbod</a></li>
+        <li><a href="#supplementen">Supplementen</a></li>
+        <li><a href="#over">Over Sabine</a></li>
+        <li><a href="#partner">Partner worden</a></li>
+        <li><a href="#faq">Veelgestelde vragen</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p><a href="mailto:sabine@zinsane.nl" style="color:rgba(255,255,255,0.6); text-decoration:none;">sabine@zinsane.nl</a></p>
+      <p><a href="https://wa.me/31652041675" style="color:rgba(255,255,255,0.6); text-decoration:none;">+31 6 52 04 16 75</a></p>
+      <p style="margin-top:24px;">Houten, Nederland</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 ZinSane &mdash; Alle rechten voorbehouden</p>
+    <p class="footer-kvk">KVK: XXXXXXXX</p>
+  </div>
+</footer>
+
+<script>
+// ——— NAV SCROLL BEHAVIOR ———
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ——— HAMBURGER MENU ———
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+// ——— FADE-IN INTERSECTION OBSERVER ———
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ——— FAQ ACCORDION ———
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+
+    // Close all open items
+    document.querySelectorAll('.faq-item.open').forEach(openItem => {
+      openItem.classList.remove('open');
+      openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+    });
+
+    // If it was not open, open it
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+</script>
+</body>
+</html>
