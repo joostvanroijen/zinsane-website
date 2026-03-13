@@ -1012,7 +1012,10 @@ footer {
       </div>
     </div>
 
-    <form class="fade-in" onsubmit="event.preventDefault()">
+    <form class="fade-in" action="https://formsubmit.co/sabine@zinsane.nl" method="POST">
+      <input type="hidden" name="_subject" value="Nieuw bericht via ZinSane.nl">
+      <input type="hidden" name="_next" value="https://www.zinsane.nl?verzonden=1">
+      <input type="hidden" name="_captcha" value="false">
       <div class="form-group">
         <label for="naam">Naam</label>
         <input type="text" id="naam" name="naam" placeholder="Jouw naam" required>
@@ -1025,11 +1028,11 @@ footer {
         <label for="interesse">Ik ben geïnteresseerd in</label>
         <select id="interesse" name="interesse">
           <option value="" disabled selected>Maak een keuze</option>
-          <option value="basic">ZinSane Basic</option>
-          <option value="premium">ZinSane Premium</option>
-          <option value="partner">ZinSane Partner</option>
-          <option value="supplementen">Supplementen</option>
-          <option value="overig">Overig</option>
+          <option value="ZinSane Basic">ZinSane Basic</option>
+          <option value="ZinSane Premium">ZinSane Premium</option>
+          <option value="ZinSane Partner">ZinSane Partner</option>
+          <option value="Supplementen">Supplementen</option>
+          <option value="Overig">Overig</option>
         </select>
       </div>
       <div class="form-group">
