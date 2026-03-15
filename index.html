@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZinSane — Vitaliteitscoaching & Test-based Nutrition</title>
 <meta name="description" content="ZinSane combineert wetenschappelijk onderbouwde bloedtesten met persoonlijke vitaliteitscoaching. Meten is weten. Ontdek wat jouw lichaam nodig heeft.">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
@@ -37,8 +37,13 @@ nav.scrolled {
 
 /* Logo */
 .nav-logo-link { text-decoration: none; display: flex; align-items: center; }
-.nav-logo-img { height: 72px; width: auto; transition: filter 0.4s ease; }
-nav:not(.scrolled) .nav-logo-img { filter: brightness(0) invert(1); }
+.nav-logo-svg { height: 56px; width: auto; transition: all 0.4s ease; }
+.logo-wordmark { fill: #2C2419; transition: fill 0.4s ease; }
+.logo-tagline { fill: #6B7B5E; transition: fill 0.4s ease; }
+.logo-line { stroke: #C4795B; transition: opacity 0.4s ease; }
+nav:not(.scrolled) .logo-wordmark { fill: #FDFBF9; }
+nav:not(.scrolled) .logo-tagline { fill: rgba(253,251,249,0.7); }
+nav:not(.scrolled) .logo-line { opacity: 0.5; }
 
 /* Nav links: white/cream when unscrolled, brown when scrolled */
 .nav-links { display: flex; gap: 40px; list-style: none; }
@@ -583,7 +588,17 @@ footer {
 <!-- ========================== NAV ========================== -->
 <nav id="navbar">
   <a href="#" class="nav-logo-link">
-    <img src="zinsane-logo.svg" alt="ZinSane" class="nav-logo-img">
+    <svg class="nav-logo-svg" width="210" height="56" viewBox="0 0 210 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Druppel -->
+      <path d="M8 38 C8 28 13 16 20 6 C27 16 32 28 32 38 C32 49 27 54 20 54 C13 54 8 49 8 38 Z" fill="#C4795B"/>
+      <ellipse cx="20" cy="42" rx="5" ry="7" fill="white" opacity="0.35"/>
+      <!-- ZinSane wordmark -->
+      <text x="44" y="33" font-family="'Cormorant Garamond', serif" font-size="27" font-weight="600" letter-spacing="-2" class="logo-wordmark">ZinSane</text>
+      <!-- Lijn -->
+      <line x1="44" y1="40" x2="206" y2="40" stroke="#C4795B" stroke-width="0.8" class="logo-line"/>
+      <!-- Tagline -->
+      <text x="44" y="51" font-family="'Inter', sans-serif" font-size="7" font-weight="400" letter-spacing="2.5" class="logo-tagline">TEST-BASED VITALITY</text>
+    </svg>
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#filosofie">Filosofie</a></li>
@@ -741,7 +756,7 @@ footer {
     <div class="card-wrapper">
       <div class="card fade-in">
         <p class="card-name">ZinSane Basic</p>
-        <p class="card-desc">Voor wie inzicht wil krijgen in zijn lichaam en gericht advies wil.</p>
+        <p class="card-desc">Voor wie inzicht wil krijgen in zijn/haar lichaam en gericht advies wil.</p>
         <ul>
           <li>Persoonlijke intake</li>
           <li>Analyse van je testresultaten</li>
