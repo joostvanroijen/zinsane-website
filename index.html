@@ -156,6 +156,20 @@ section { padding: 120px 60px; }
   text-align: center; max-width: 800px;
 }
 
+/* ===================== AANPAK ===================== */
+.aanpak { background: var(--cream); border-radius: 40px; margin: 0 30px; padding: 120px 60px; }
+.aanpak-steps { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+.aanpak-step { display: grid; grid-template-columns: 80px 1fr; gap: 32px; align-items: flex-start; padding: 40px 0; border-bottom: 1px solid var(--cream-dark); }
+.aanpak-step:last-child { border-bottom: none; }
+.step-number { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 400; color: var(--terracotta); opacity: 0.5; line-height: 1; padding-top: 4px; }
+.step-content h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 400; margin-bottom: 10px; color: var(--brown); }
+.step-content p { color: var(--brown-light); font-size: 0.98rem; line-height: 1.8; }
+@media (max-width: 900px) {
+  .aanpak { margin: 0 16px; padding: 80px 28px; border-radius: 28px; }
+  .aanpak-step { grid-template-columns: 50px 1fr; gap: 20px; padding: 30px 0; }
+  .step-number { font-size: 1.6rem; }
+}
+
 /* ===================== AANBOD ===================== */
 .aanbod { background: var(--cream); border-radius: 40px; margin: 0 30px; padding: 120px 60px; }
 .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
@@ -556,10 +570,11 @@ footer {
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#filosofie">Filosofie</a></li>
+    <li><a href="#aanpak">Aanpak</a></li>
     <li><a href="#aanbod">Aanbod</a></li>
-    <li><a href="#over">Over Sabine</a></li>
-    <li><a href="#partner">Partner</a></li>
+    <li><a href="#over">Sabine</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#partner">Club ZinSane</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -632,6 +647,58 @@ footer {
     <p>ZinSane combineert deze test-based aanpak met persoonlijke vitaliteitscoaching, omdat duurzame gezondheid nooit uit één element bestaat. Voeding, beweging, herstel en mentale balans versterken elkaar.</p>
   </div>
   <p class="pull-quote fade-in">Een gezond lichaam is het fundament onder alles wat je wilt bereiken.</p>
+</section>
+
+<!-- ========================== AANPAK ========================== -->
+<section class="aanpak" id="aanpak">
+  <div class="fade-in" style="text-align:center; max-width:600px; margin:0 auto 70px;">
+    <p class="section-label">Aanpak</p>
+    <h2 class="section-title">Zo werkt ZinSane</h2>
+    <p class="section-subtitle">Van meting naar resultaat — stap voor stap</p>
+    <p style="margin-top: 24px; color: var(--brown-light); font-size: 1.05rem;">De ZinSane-methode bestaat uit drie heldere stappen.</p>
+    <p style="margin-top: 20px; color: var(--brown); font-family: 'Playfair Display', serif; font-size: 1.1rem; line-height: 2;">
+      Stap 1. Meten.<br>
+      Stap 2. Herstellen.<br>
+      Stap 3. Versterken.
+    </p>
+  </div>
+  <div class="aanpak-steps">
+    <div class="aanpak-step fade-in">
+      <div class="step-number">01</div>
+      <div class="step-content">
+        <h3>Kennismaking</h3>
+        <p>We starten met een persoonlijk gesprek. Ik leer jou kennen — jouw situatie, energie, doelen en leefstijl. Samen bepalen we het juiste startpunt.</p>
+      </div>
+    </div>
+    <div class="aanpak-step fade-in">
+      <div class="step-number">02</div>
+      <div class="step-content">
+        <h3>Bloedtest & nulmeting</h3>
+        <p>Met een eenvoudige thuistestkit meten we jouw omega-6/omega-3 balans en andere biomarkers. Geen aannames — alleen data.</p>
+      </div>
+    </div>
+    <div class="aanpak-step fade-in">
+      <div class="step-number">03</div>
+      <div class="step-content">
+        <h3>Persoonlijk advies</h3>
+        <p>Op basis van jouw testresultaten stel ik een gericht plan op: voeding, supplementen en leefstijl — volledig afgestemd op wat jouw lichaam nodig heeft.</p>
+      </div>
+    </div>
+    <div class="aanpak-step fade-in">
+      <div class="step-number">04</div>
+      <div class="step-content">
+        <h3>Coaching & begeleiding</h3>
+        <p>Tijdens het traject begeleid ik je met diepgaande coachingssessies. We werken samen aan duurzame verandering in energie, herstel en mentale scherpte.</p>
+      </div>
+    </div>
+    <div class="aanpak-step fade-in">
+      <div class="step-number">05</div>
+      <div class="step-content">
+        <h3>Hermeting & resultaat</h3>
+        <p>Na drie maanden meten we opnieuw. Zwart op wit zie je het verschil. De hermeting bewijst wat jouw lichaam heeft bereikt.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ========================== IMAGE BREAK 1 ========================== -->
