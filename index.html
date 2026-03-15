@@ -372,8 +372,8 @@ section { padding: 120px 60px; }
   list-style: none; margin: 30px 0; text-align: left;
   max-width: 500px; margin-left: auto; margin-right: auto;
 }
-.partner-inner ul li { padding: 10px 0; color: var(--brown-light); font-size: 0.95rem; }
-.partner-inner ul li::before { content: '—'; margin-right: 12px; color: var(--olive); }
+.partner-inner ul li { padding: 10px 0; color: var(--brown-light); font-size: 0.95rem; display: flex; align-items: baseline; gap: 10px; }
+.partner-inner ul li::before { content: '—'; color: var(--olive); flex-shrink: 0; }
 
 /* ===================== FAQ ===================== */
 .faq { background: var(--cream); border-radius: 40px; margin: 0 30px; padding: 120px 60px; }
@@ -932,24 +932,26 @@ footer {
 
 <!-- ========================== PARTNER ========================== -->
 <section class="partner" id="partner">
-  <div class="partner-inner fade-in">
-    <p class="section-label">Community</p>
-    <h2 class="section-title">Club ZinSane</h2>
-    <p class="section-subtitle">Jouw community voor langdurige vitaliteit</p>
-    <div style="width:320px;margin:28px auto 40px;border-radius:24px;overflow:hidden;">
-      <img src="sabine-community.jpg" alt="Sabine van Roijen" loading="lazy" style="width:100%;height:auto;display:block;">
+  <div class="over-grid fade-in" style="max-width:1100px;margin:0 auto;">
+    <div class="over-image fade-in">
+      <img src="sabine-community.jpg" alt="Sabine van Roijen — Club ZinSane" loading="lazy" style="object-position:center top;">
     </div>
-    <p>Ik geloof dat de mooiste dingen in het leven samen gebeuren.</p>
-    <p>Club ZinSane is de plek waar mensen samenkomen die net als jij hebben ontdekt dat echte vitaliteit begint bij inzicht in jezelf. Mensen die niet wachten tot er iets mis gaat, maar bewust bouwen aan hun gezondheid — vandaag, morgen en over twintig jaar.</p>
-    <p>Als lid van Club ZinSane omring je jezelf met een community van gelijkgestemden. We delen kennis, ervaringen en resultaten. We leren van elkaar. En we groeien samen.</p>
-    <ul>
-      <li>Persoonlijke begeleiding van mij, Sabine</li>
-      <li>Exclusieve content, inzichten en updates</li>
-      <li>Live events en inspirerende kennissessies</li>
-      <li>Een warme, gedreven community die jou begrijpt</li>
-    </ul>
-    <p><em>Klaar om onderdeel te worden van iets groters dan jezelf?</em></p>
-    <a href="https://chat.whatsapp.com/K1hsuzGtID4KS1yrB0oJEp" target="_blank" class="btn-primary" style="margin-top:20px;">Word gratis lid</a>
+    <div class="over-text fade-in">
+      <p class="section-label">Community</p>
+      <h2 class="section-title">Club ZinSane</h2>
+      <p class="section-subtitle" style="margin-bottom:24px;">Jouw community voor langdurige vitaliteit</p>
+      <p>Ik geloof dat de mooiste dingen in het leven samen gebeuren.</p>
+      <p>Club ZinSane is de plek waar mensen samenkomen die net als jij hebben ontdekt dat echte vitaliteit begint bij inzicht in jezelf. Mensen die niet wachten tot er iets mis gaat, maar bewust bouwen aan hun gezondheid — vandaag, morgen en over twintig jaar.</p>
+      <p>Als lid van Club ZinSane omring je jezelf met een community van gelijkgestemden. We delen kennis, ervaringen en resultaten. We leren van elkaar. En we groeien samen.</p>
+      <ul class="partner-inner" style="max-width:100%;margin:0 0 24px 0;">
+        <li>Persoonlijke begeleiding van mij, Sabine</li>
+        <li>Exclusieve content, inzichten en updates</li>
+        <li>Live events en inspirerende kennissessies</li>
+        <li>Een warme, gedreven community die jou begrijpt</li>
+      </ul>
+      <p><em>Klaar om onderdeel te worden van iets groters dan jezelf?</em></p>
+      <a href="https://chat.whatsapp.com/K1hsuzGtID4KS1yrB0oJEp" target="_blank" class="btn-primary" style="margin-top:20px;display:inline-block;">Word gratis lid</a>
+    </div>
   </div>
 </section>
 
