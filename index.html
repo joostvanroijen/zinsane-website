@@ -156,6 +156,20 @@ section { padding: 120px 60px; }
   text-align: center; max-width: 800px;
 }
 
+/* ===================== LONGEVITY QUOTE ===================== */
+.longevity-quote {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 1.45rem !important;
+  font-style: italic;
+  color: var(--terracotta) !important;
+  line-height: 1.6;
+  margin: 36px 0 !important;
+  padding: 32px 40px;
+  border-left: 2px solid var(--terracotta);
+  background: rgba(196,121,91,0.05);
+  border-radius: 0 16px 16px 0;
+}
+
 /* ===================== AANPAK ===================== */
 .aanpak { background: var(--cream); border-radius: 40px; margin: 0 30px; padding: 120px 60px; }
 .aanpak-steps { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
@@ -297,6 +311,9 @@ section { padding: 120px 60px; }
   box-shadow: 0 10px 40px rgba(44,36,25,0.06);
   transform: translateY(-3px);
 }
+.product-extra { font-size: 0.88rem; color: var(--brown-light); margin-top: 18px; line-height: 1.7; border-top: 1px solid var(--cream-dark); padding-top: 16px; }
+.product-img { display: flex; justify-content: center; margin-bottom: 20px; }
+.product-img img { width: 140px; height: 140px; object-fit: contain; }
 .product-icon {
   width: 50px; height: 50px; border-radius: 16px;
   background: var(--cream); display: flex; align-items: center; justify-content: center;
@@ -640,6 +657,11 @@ footer {
   <div class="filosofie-inner fade-in">
     <p class="section-label">Filosofie</p>
     <h2 class="section-title">Meten is weten</h2>
+    <p class="longevity-quote">"Longevity betekent niet alleen meer jaren aan je leven toevoegen, maar meer leven aan je jaren."</p>
+    <p><em>Longevity = langdurige vitaliteit. Bij ZinSane werken we aan gezondheid op celniveau, zodat je lichaam optimaal kan functioneren – vandaag, morgen en over twintig jaar.</em></p>
+    <p>Binnen ZinSane gaat longevity over het optimaliseren van je lichaam van binnenuit, zodat je langer vitaal, energiek en mentaal scherp blijft – gebaseerd op wetenschap, metingen en persoonlijke inzichten.</p>
+    <p>Longevity is de kunst van duurzaam leven. Niet gedreven door snelle oplossingen of hypes, maar door inzicht in wat jouw lichaam werkelijk nodig heeft.</p>
+    <p>Bij ZinSane geloven we dat echte vitaliteit begint bij meten, begrijpen en gericht verbeteren. Door middel van test-based nutrition en bewuste leefstijlkeuzes ondersteunen we het lichaam op celniveau – zodat gezondheid niet alleen vandaag voelbaar is, maar ook op lange termijn behouden blijft.</p>
     <p>Bij ZinSane geloven we dat echte gezondheid begint bij inzicht. Niet bij aannames, trends of standaardadviezen, maar bij meten wat jouw lichaam daadwerkelijk nodig heeft.</p>
     <p>Veel mensen slikken supplementen "voor de zekerheid". Maar zonder inzicht weet je eigenlijk niet of ze iets bijdragen.</p>
     <p>Met een eenvoudige bloedtest wordt onder andere de omega-6/omega-3 balans in je lichaam bepaald. Deze balans speelt een cruciale rol bij celgezondheid, energie, herstel en ontstekingsprocessen.</p>
@@ -719,7 +741,6 @@ footer {
     <div class="card-wrapper">
       <div class="card fade-in">
         <p class="card-name">ZinSane Basic</p>
-        <p class="card-price">Vanaf €195</p>
         <p class="card-desc">Voor wie inzicht wil krijgen in zijn lichaam en gericht advies wil.</p>
         <ul>
           <li>Persoonlijke intake</li>
@@ -736,7 +757,6 @@ footer {
       <div class="meest-gekozen-badge">Meest gekozen</div>
       <div class="card featured fade-in">
         <p class="card-name">ZinSane Premium</p>
-        <p class="card-price">Vanaf €495</p>
         <p class="card-desc">Voor wie zijn energie, herstel en mentale scherpte structureel wil verbeteren.</p>
         <ul>
           <li>Uitgebreide intake</li>
@@ -754,7 +774,6 @@ footer {
     <div class="card-wrapper">
       <div class="card fade-in">
         <p class="card-name">ZinSane Partner</p>
-        <p class="card-price">Gratis kennismaking</p>
         <p class="card-desc">Voor mensen met een passie voor gezondheid én ondernemerschap.</p>
         <ul>
           <li>Toegang tot wereldwijd Zinzino netwerk</li>
@@ -843,39 +862,27 @@ footer {
   <div class="products">
 
     <div class="product-card fade-in">
-      <div class="product-icon">
-        <!-- Drop icon -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--olive)">
-          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
-        </svg>
-      </div>
+      <div class="product-img"><img src="balanceoil.png" alt="BalanceOil+"></div>
       <p class="product-name">BalanceOil+</p>
       <p class="product-desc">De slimste weg naar een gezonde omega-balans. Op basis van visolie en extra vierge olijfolie.</p>
       <a href="#contact" class="btn-product">Meer info</a>
+      <p class="product-extra">BalanceOil+ is een hoogwaardige Omega-3 olie van volledig natuurlijk polyfenol omega-balance voedingssupplementen. Op basis van een unieke, wetenschappelijke formule biedt deze premium, innovatieve mix van oliën afkomstig van in het wild gevangen kleine vis en extra vierge olijfolie van voor de oogst grote hoeveelheden polyfenolen voor een efficiënte en effectieve absorptie en bescherming van bloedlipiden. Het verhoogt en behoudt veilig uw Omega-3-niveaus, past uw Omega-6:3 verhouding aan, creëert gunstige niveaus voor uw cholesterol, uw hart en voor uw hersenen.</p>
     </div>
 
     <div class="product-card fade-in">
-      <div class="product-icon">
-        <!-- Sun/energy icon -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--olive)">
-          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-        </svg>
-      </div>
-      <p class="product-name">Viva+</p>
+      <div class="product-img"><img src="xtend.png" alt="Xtend+"></div>
+      <p class="product-name">Xtend+</p>
       <p class="product-desc">Dagelijkse multivitamine met probiotica. Compleet en gebalanceerd.</p>
       <a href="#contact" class="btn-product">Meer info</a>
+      <p class="product-extra">Xtend+ is een veganistisch, volledig natuurlijk geavanceerd immuun- en voedingssupplement dat BalanceOil en ZinoBiotic perfect aanvult. Gemaakt ter ondersteuning van ons eigen immuunsysteem en bevat micro- en phytonutrients, waaronder 22 essentiële vitaminen en mineralen, en gezuiverde 1-3, 1-6 bèta-glucanen afkomstig van bakkersgist, een uitgebreide multivitamine supplement voor jou.</p>
     </div>
 
     <div class="product-card fade-in">
-      <div class="product-icon">
-        <!-- Leaf/nature icon -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--olive)">
-          <path d="M2 2s7 0 12 5c2.5 2.5 3.5 5.5 3.5 9.5 0 0-4.5-1-7.5-4S5 5.5 5 2"/><path d="M2 22c0-5 2-9 5-12"/>
-        </svg>
-      </div>
+      <div class="product-img"><img src="zinobiotic.png" alt="ZinoBiotic+"></div>
       <p class="product-name">ZinoBiotic+</p>
       <p class="product-desc">Vezelmix voor een gezonde darmflora. Ondersteunt gewichtsbeheer en energieniveau.</p>
       <a href="#contact" class="btn-product">Meer info</a>
+      <p class="product-extra">ZinoBiotic+ is een maatwerkmix van 8 natuurlijke voedingsvezels. Deze vezels worden gemetaboliseerd in de darmen (de dikke darm) waar ze de gezonde bacteriën voeden, dat bekend staat als microbiota. ZinoBiotic+ helpt bij het verminderen van hoog bloedsuiker na maaltijden, en het handhaven van een goed cholesterolgehalte. De vezels bevorderen veel gezonde darmfuncties.</p>
     </div>
 
   </div>
