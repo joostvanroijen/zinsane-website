@@ -227,9 +227,10 @@ section { padding: 120px 60px; }
   font-size: 1.4rem; margin-bottom: 6px;
 }
 .card-price {
-  font-size: 0.8rem; color: var(--brown-light); letter-spacing: 0.5px;
-  margin-bottom: 12px; font-style: italic;
+  font-size: 1.1rem; color: var(--brown); font-weight: 600; letter-spacing: 0.5px;
+  margin: 16px 0 12px;
 }
+.card.featured .card-price { color: var(--white); }
 .card-desc { color: var(--brown-light); font-size: 0.92rem; margin-bottom: 28px; font-style: italic; }
 .card ul { list-style: none; margin-bottom: 32px; }
 .card ul li {
@@ -748,7 +749,7 @@ footer {
           <li>Persoonlijk supplement- en leefstijladvies</li>
           <li>Vervolggesprek</li>
         </ul>
-        <p style="margin: 16px 0 8px; font-size: 1.1rem; font-weight: 600; color: var(--brown);">Vanaf &euro; 249</p>
+        <p class="card-price">Vanaf &euro; 249</p>
         <a href="#contact" class="btn-card">Meer informatie</a>
       </div>
     </div>
@@ -766,7 +767,7 @@ footer {
           <li>4 tot 6 diepgaande coachingssessies</li>
           <li>Begeleiding bij leefstijloptimalisatie</li>
         </ul>
-        <p style="margin: 16px 0 8px; font-size: 1.1rem; font-weight: 600; color: var(--brown);">Vanaf &euro; 1.995</p>
+        <p class="card-price">Vanaf &euro; 1.995</p>
         <a href="#contact" class="btn-card">Start jouw traject</a>
         <span class="urgency-note">&#8594; Nog 3 plekken beschikbaar in april</span>
       </div>
