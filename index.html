@@ -254,20 +254,45 @@ section { padding: 120px 60px; }
 
 /* ===================== TESTIMONIALS ===================== */
 .testimonials { background: var(--white); }
+.testimonials-carousel-wrapper {
+  position: relative; margin-top: 60px; overflow: hidden;
+}
 .testimonials-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 30px; margin-top: 60px;
+  display: flex; gap: 30px;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 .testimonial-card {
   background: var(--cream); border-radius: 24px;
   padding: 42px 36px; position: relative;
   border: 1px solid var(--cream-dark);
   transition: all 0.3s ease;
+  flex: 0 0 calc((100% - 60px) / 3);
+  min-width: 0;
 }
 .testimonial-card:hover {
   box-shadow: 0 12px 40px rgba(44,36,25,0.07);
   transform: translateY(-3px);
 }
+.carousel-controls {
+  display: flex; justify-content: center; align-items: center;
+  gap: 16px; margin-top: 40px;
+}
+.carousel-btn {
+  background: none; border: 1px solid var(--cream-dark);
+  border-radius: 50%; width: 44px; height: 44px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s ease; color: var(--brown-light);
+}
+.carousel-btn:hover { background: var(--brown); color: var(--white); border-color: var(--brown); }
+.carousel-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.carousel-dots { display: flex; gap: 8px; }
+.carousel-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--cream-dark); cursor: pointer;
+  transition: all 0.3s ease; border: none;
+}
+.carousel-dot.active { background: var(--terracotta); width: 20px; border-radius: 3px; }
 .testimonial-quote-mark {
   font-family: 'Playfair Display', serif;
   font-size: 5rem; line-height: 1; color: var(--terracotta);
@@ -556,7 +581,7 @@ footer {
   .aanbod { margin: 0 16px; padding: 80px 28px; border-radius: 28px; }
   .cards { grid-template-columns: 1fr; }
 
-  .testimonials-grid { grid-template-columns: 1fr; }
+  .testimonial-card { flex: 0 0 100%; }
 
   .webshop { margin: 0 16px; padding: 80px 28px; border-radius: 28px; }
   .products { grid-template-columns: 1fr; }
@@ -794,7 +819,8 @@ footer {
     <h2 class="section-title">Wat klanten zeggen</h2>
     <p class="section-subtitle">Test-based resultaten die je voelt</p>
   </div>
-  <div class="testimonials-grid">
+  <div class="testimonials-carousel-wrapper">
+  <div class="testimonials-grid" id="testimonialsTrack">
 
     <div class="testimonial-card fade-in">
       <div class="testimonial-quote-mark">&ldquo;</div>
@@ -860,6 +886,16 @@ footer {
       </div>
     </div>
 
+  </div>
+  </div>
+  <div class="carousel-controls">
+    <button class="carousel-btn" id="carouselPrev" aria-label="Vorige">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div class="carousel-dots" id="carouselDots"></div>
+    <button class="carousel-btn" id="carouselNext" aria-label="Volgende">
+      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
   </div>
 </section>
 
@@ -1206,6 +1242,52 @@ const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
 hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
 navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+// ——— TESTIMONIALS CAROUSEL ———
+(function() {
+  const track = document.getElementById('testimonialsTrack');
+  const cards = track.querySelectorAll('.testimonial-card');
+  const dotsContainer = document.getElementById('carouselDots');
+  const prevBtn = document.getElementById('carouselPrev');
+  const nextBtn = document.getElementById('carouselNext');
+
+  function getVisible() {
+    return window.innerWidth < 768 ? 1 : 3;
+  }
+
+  let current = 0;
+  const total = cards.length;
+
+  function maxIndex() { return total - getVisible(); }
+
+  function buildDots() {
+    dotsContainer.innerHTML = '';
+    const count = maxIndex() + 1;
+    for (let i = 0; i < count; i++) {
+      const d = document.createElement('button');
+      d.className = 'carousel-dot' + (i === current ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(d);
+    }
+  }
+
+  function goTo(index) {
+    current = Math.max(0, Math.min(index, maxIndex()));
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    const gap = 30;
+    track.style.transform = `translateX(-${current * (cardWidth + gap)}px)`;
+    dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+  window.addEventListener('resize', () => { buildDots(); goTo(current); });
+
+  buildDots();
+  goTo(0);
+})();
 
 // ——— FADE-IN INTERSECTION OBSERVER ———
 const observer = new IntersectionObserver((entries) => {
