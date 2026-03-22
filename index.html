@@ -607,6 +607,23 @@ footer {
   .credential-badges { gap: 8px; }
   .footer-social { gap: 10px; }
 }
+
+/* ===================== VITALOGISCH MODEL ===================== */
+.vitalogisch-sectie { max-width: 800px; margin: 80px auto 0; padding-top: 60px; border-top: 1px solid var(--cream-dark); }
+.schijf-wrap { max-width: 420px; margin: 48px auto; }
+.schijf-wrap svg { width: 100%; height: auto; display: block; }
+.schijf-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 8px; }
+.schijf-item { display: flex; flex-direction: column; gap: 6px; }
+.schijf-item-bar { height: 3px; border-radius: 2px; margin-bottom: 2px; }
+.schijf-item strong { font-size: 0.78rem; font-weight: 600; color: var(--brown); letter-spacing: 0.5px; text-transform: uppercase; }
+.schijf-item em { font-size: 0.75rem; color: var(--brown-light); font-style: normal; }
+.schijf-item span { font-size: 0.72rem; color: var(--olive); font-style: italic; }
+@media (max-width: 768px) {
+  .schijf-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .schijf-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -747,18 +764,113 @@ footer {
     </div>
   </div>
 
-  <div class="fade-in" style="max-width: 800px; margin: 80px auto 0; padding-top: 60px; border-top: 1px solid var(--cream-dark);">
+  <div class="vitalogisch-sectie fade-in">
     <p class="section-label" style="text-align:left;">Vitaliteitscoaching</p>
-    <h2 style="font-family:'Playfair Display',serif; font-size:2rem; font-weight:400; color:var(--brown); margin-bottom:24px; line-height:1.3;">De vitaliteitsschijf</h2>
+    <h2 style="font-family:'Playfair Display',serif; font-size:2rem; font-weight:400; color:var(--brown); margin-bottom:24px; line-height:1.3;">Het Vitalogisch model</h2>
     <p style="color:var(--brown-light); font-size:1rem; line-height:1.85; margin-bottom:20px;">
-      De vitaliteitsschijf is een integraal vitaliteitsmodel dat in één oogopslag laat zien hoe je vitaler kunt leven — en aan welke knop je kunt draaien om dit te bewerkstelligen.
+      Het Vitalogisch model is een integraal vitaliteitsmodel dat in één oogopslag laat zien hoe je vitaler kunt leven — en aan welke knop je kunt draaien om dit te bewerkstelligen.
     </p>
     <p style="color:var(--brown-light); font-size:1rem; line-height:1.85; margin-bottom:20px;">
-      Het model hanteert een holistische benadering van vitaliteit. Vitaliteit bestaat uit het in cadans zijn van vijf aspecten: <strong style="color:var(--brown); font-weight:500;">vitalogisch, fysiologisch, psychologisch, ecologisch</strong> en <strong style="color:var(--brown); font-weight:500;">filosofisch</strong>.
+      Het model hanteert een holistische benadering van vitaliteit. Vitaliteit bestaat uit het in balans zijn van vijf aspecten: <strong style="color:var(--brown); font-weight:500;">vitalogisch, fysiologisch, psychologisch, ecologisch</strong> en <strong style="color:var(--brown); font-weight:500;">filosofisch</strong>.
     </p>
-    <p style="color:var(--brown-light); font-size:1rem; line-height:1.85;">
-      Je vitaal voelen is een goede cadans tussen lichaam <em>(fysiologisch)</em>, geest <em>(psychologisch)</em>, omgeving <em>(ecologisch)</em> en zingeving <em>(filosofisch)</em>. Het gaat om het ontleden en hervinden van energie — van binnenuit, op basis van inzicht in jezelf.
+    <p style="color:var(--brown-light); font-size:1rem; line-height:1.85; margin-bottom:48px;">
+      Je vitaal voelen is een goede balans tussen lichaam <em>(fysiologisch)</em>, geest <em>(psychologisch)</em>, omgeving <em>(ecologisch)</em> en zingeving <em>(filosofisch)</em>. Het gaat om het vrijmaken en hervinden van energie — van binnenuit, op basis van inzicht in jezelf.
     </p>
+
+    <!-- SVG Wiel -->
+    <div class="schijf-wrap">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Het Vitalogisch model — de vijf aspecten van vitaliteit">
+
+        <!-- Segment 0: Vitalogisch (olive #6B7B5E), -89° tot -19° -->
+        <path d="M 203.05,25.03 A 175,175 0 0,1 365.46,143.02 L 285.10,170.70 A 90,90 0 0,0 201.57,110.02 Z" fill="#6B7B5E"/>
+
+        <!-- Segment 1: Fysiologisch (terracotta #C4795B), -17° tot 53° -->
+        <path d="M 367.35,148.83 A 175,175 0 0,1 305.32,339.76 L 254.16,271.87 A 90,90 0 0,0 286.07,173.68 Z" fill="#C4795B"/>
+
+        <!-- Segment 2: Psychologisch (warm rose #B5776A), 55° tot 125° -->
+        <path d="M 300.38,343.36 A 175,175 0 0,1 99.62,343.36 L 148.38,273.73 A 90,90 0 0,0 251.62,273.73 Z" fill="#B5776A"/>
+
+        <!-- Segment 3: Ecologisch (sage #8A9E7A), 127° tot 197° -->
+        <path d="M 94.68,339.76 A 175,175 0 0,1 32.65,148.83 L 113.93,173.68 A 90,90 0 0,0 145.84,271.87 Z" fill="#8A9E7A"/>
+
+        <!-- Segment 4: Filosofisch (taupe #7B6B5A), 199° tot 269° -->
+        <path d="M 34.54,143.02 A 175,175 0 0,1 196.95,25.03 L 198.43,110.02 A 90,90 0 0,0 114.90,170.70 Z" fill="#7B6B5A"/>
+
+        <!-- Witte binnencirkel -->
+        <circle cx="200" cy="200" r="88" fill="#FDFBF9"/>
+
+        <!-- Tekst binnencirkel -->
+        <text x="200" y="190" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="13" fill="#2C2419" font-style="italic">Het</text>
+        <text x="200" y="206" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="13" fill="#2C2419" font-style="italic">Vitalogisch</text>
+        <text x="200" y="222" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="13" fill="#2C2419" font-style="italic">model</text>
+
+        <!-- Labels in segmenten -->
+        <!-- Vitalogisch: midpunt -54°, positie (277.6, 93.2), rotatie -54° -->
+        <text transform="translate(277.6,93.2) rotate(-54)" text-anchor="middle" fill="white">
+          <tspan x="0" dy="-7" font-family="'Inter',Arial,sans-serif" font-size="9.5" font-weight="600" letter-spacing="1">VITALOGISCH</tspan>
+          <tspan x="0" dy="14" font-family="'Inter',Arial,sans-serif" font-size="8" font-style="italic" opacity="0.85">Zelfbewustzijn</tspan>
+        </text>
+
+        <!-- Fysiologisch: midpunt 18°, positie (325.5, 240.8), rotatie 18° -->
+        <text transform="translate(325.5,240.8) rotate(18)" text-anchor="middle" fill="white">
+          <tspan x="0" dy="-7" font-family="'Inter',Arial,sans-serif" font-size="9.5" font-weight="600" letter-spacing="1">FYSIOLOGISCH</tspan>
+          <tspan x="0" dy="14" font-family="'Inter',Arial,sans-serif" font-size="8" font-style="italic" opacity="0.85">Fysiek welzijn</tspan>
+        </text>
+
+        <!-- Psychologisch: midpunt 90°, positie (200, 332), rotatie -90° -->
+        <text transform="translate(200,332) rotate(-90)" text-anchor="middle" fill="white">
+          <tspan x="0" dy="-7" font-family="'Inter',Arial,sans-serif" font-size="9.5" font-weight="600" letter-spacing="1">PSYCHOLOGISCH</tspan>
+          <tspan x="0" dy="14" font-family="'Inter',Arial,sans-serif" font-size="8" font-style="italic" opacity="0.85">Mentaal welzijn</tspan>
+        </text>
+
+        <!-- Ecologisch: midpunt 162°, positie (74.5, 240.8), rotatie -18° -->
+        <text transform="translate(74.5,240.8) rotate(-18)" text-anchor="middle" fill="white">
+          <tspan x="0" dy="-7" font-family="'Inter',Arial,sans-serif" font-size="9.5" font-weight="600" letter-spacing="1">ECOLOGISCH</tspan>
+          <tspan x="0" dy="14" font-family="'Inter',Arial,sans-serif" font-size="8" font-style="italic" opacity="0.85">Sociaal welzijn</tspan>
+        </text>
+
+        <!-- Filosofisch: midpunt 234°, positie (122.4, 93.2), rotatie 54° -->
+        <text transform="translate(122.4,93.2) rotate(54)" text-anchor="middle" fill="white">
+          <tspan x="0" dy="-7" font-family="'Inter',Arial,sans-serif" font-size="9.5" font-weight="600" letter-spacing="1">FILOSOFISCH</tspan>
+          <tspan x="0" dy="14" font-family="'Inter',Arial,sans-serif" font-size="8" font-style="italic" opacity="0.85">Spiritueel welzijn</tspan>
+        </text>
+
+      </svg>
+    </div>
+
+    <!-- 5 beschrijvingen -->
+    <div class="schijf-grid">
+      <div class="schijf-item">
+        <div class="schijf-item-bar" style="background:#6B7B5E;"></div>
+        <strong>Vitalogisch</strong>
+        <em>Nut &amp; Noodzaak</em>
+        <span>Zelfbewustzijn</span>
+      </div>
+      <div class="schijf-item">
+        <div class="schijf-item-bar" style="background:#C4795B;"></div>
+        <strong>Fysiologisch</strong>
+        <em>Lichaam &amp; Leefstijl</em>
+        <span>Fysiek welzijn</span>
+      </div>
+      <div class="schijf-item">
+        <div class="schijf-item-bar" style="background:#B5776A;"></div>
+        <strong>Psychologisch</strong>
+        <em>Mindset &amp; Emoties</em>
+        <span>Mentaal welzijn</span>
+      </div>
+      <div class="schijf-item">
+        <div class="schijf-item-bar" style="background:#8A9E7A;"></div>
+        <strong>Ecologisch</strong>
+        <em>Omgeving &amp; Relaties</em>
+        <span>Sociaal welzijn</span>
+      </div>
+      <div class="schijf-item">
+        <div class="schijf-item-bar" style="background:#7B6B5A;"></div>
+        <strong>Filosofisch</strong>
+        <em>Talenten &amp; Zingeving</em>
+        <span>Spiritueel welzijn</span>
+      </div>
+    </div>
   </div>
 </section>
 
