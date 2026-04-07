@@ -345,8 +345,8 @@ section { padding: 120px 60px; }
 .products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 .product-card {
   background: var(--white); border-radius: 20px;
-  padding: 42px 32px; border: 1px solid transparent;
-  transition: all 0.4s ease;
+  padding: 0; border: 1px solid transparent;
+  transition: all 0.4s ease; overflow: hidden;
 }
 .product-card:hover {
   border-color: var(--cream-dark);
@@ -354,8 +354,9 @@ section { padding: 120px 60px; }
   transform: translateY(-3px);
 }
 .product-extra { font-size: 0.88rem; color: var(--brown-light); margin-top: 18px; line-height: 1.7; border-top: 1px solid var(--cream-dark); padding-top: 16px; }
-.product-img { display: flex; justify-content: center; margin-bottom: 20px; }
-.product-img img { width: 140px; height: 140px; object-fit: contain; }
+.product-img { width: 100%; height: 220px; overflow: hidden; }
+.product-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.product-body { padding: 28px 32px 36px; }
 .product-icon {
   width: 50px; height: 50px; border-radius: 16px;
   background: var(--cream); display: flex; align-items: center; justify-content: center;
@@ -1068,23 +1069,29 @@ footer {
 
     <div class="product-card fade-in">
       <div class="product-img"><img src="balanceoil-new.jpg" alt="BalanceOil+"></div>
-      <p class="product-name">BalanceOil+</p>
-      <p class="product-desc">De slimste weg naar een gezonde omega-balans. Op basis van visolie en extra vierge olijfolie.</p>
-      <p class="product-extra">BalanceOil+ is een hoogwaardige Omega-3 olie van volledig natuurlijk polyfenol omega-balance voedingssupplementen. Op basis van een unieke, wetenschappelijke formule biedt deze premium, innovatieve mix van oliën afkomstig van in het wild gevangen kleine vis en extra vierge olijfolie van voor de oogst grote hoeveelheden polyfenolen voor een efficiënte en effectieve absorptie en bescherming van bloedlipiden. Het verhoogt en behoudt veilig uw Omega-3-niveaus, past uw Omega-6:3 verhouding aan, creëert gunstige niveaus voor uw cholesterol, uw hart en voor uw hersenen.</p>
+      <div class="product-body">
+        <p class="product-name">BalanceOil+</p>
+        <p class="product-desc">De slimste weg naar een gezonde omega-balans. Op basis van visolie en extra vierge olijfolie.</p>
+        <p class="product-extra">BalanceOil+ is een hoogwaardige Omega-3 olie van volledig natuurlijk polyfenol omega-balance voedingssupplementen. Op basis van een unieke, wetenschappelijke formule biedt deze premium, innovatieve mix van oliën afkomstig van in het wild gevangen kleine vis en extra vierge olijfolie van voor de oogst grote hoeveelheden polyfenolen voor een efficiënte en effectieve absorptie en bescherming van bloedlipiden. Het verhoogt en behoudt veilig uw Omega-3-niveaus, past uw Omega-6:3 verhouding aan, creëert gunstige niveaus voor uw cholesterol, uw hart en voor uw hersenen.</p>
+      </div>
     </div>
 
     <div class="product-card fade-in">
       <div class="product-img"><img src="zinobiotic-new.jpg" alt="ZinoBiotic+"></div>
-      <p class="product-name">ZinoBiotic+</p>
-      <p class="product-desc">Vezelmix voor een gezonde darmflora. Ondersteunt gewichtsbeheer en energieniveau.</p>
-      <p class="product-extra">ZinoBiotic+ is een maatwerkmix van 8 natuurlijke voedingsvezels. Deze vezels worden gemetaboliseerd in de darmen (de dikke darm) waar ze de gezonde bacteriën voeden, dat bekend staat als microbiota. ZinoBiotic+ helpt bij het verminderen van hoog bloedsuiker na maaltijden, en het handhaven van een goed cholesterolgehalte. De vezels bevorderen veel gezonde darmfuncties.</p>
+      <div class="product-body">
+        <p class="product-name">ZinoBiotic+</p>
+        <p class="product-desc">Vezelmix voor een gezonde darmflora. Ondersteunt gewichtsbeheer en energieniveau.</p>
+        <p class="product-extra">ZinoBiotic+ is een maatwerkmix van 8 natuurlijke voedingsvezels. Deze vezels worden gemetaboliseerd in de darmen (de dikke darm) waar ze de gezonde bacteriën voeden, dat bekend staat als microbiota. ZinoBiotic+ helpt bij het verminderen van hoog bloedsuiker na maaltijden, en het handhaven van een goed cholesterolgehalte. De vezels bevorderen veel gezonde darmfuncties.</p>
+      </div>
     </div>
 
     <div class="product-card fade-in">
       <div class="product-img"><img src="xtend-new.jpg" alt="Xtend+"></div>
-      <p class="product-name">Xtend+</p>
-      <p class="product-desc">Dagelijkse multivitamine met probiotica. Compleet en gebalanceerd.</p>
-      <p class="product-extra">Xtend+ is een veganistisch, volledig natuurlijk geavanceerd immuun- en voedingssupplement dat BalanceOil en ZinoBiotic perfect aanvult. Gemaakt ter ondersteuning van ons eigen immuunsysteem en bevat micro- en phytonutrients, waaronder 22 essentiële vitaminen en mineralen, en gezuiverde 1-3, 1-6 bèta-glucanen afkomstig van bakkersgist, een uitgebreide multivitamine supplement voor jou.</p>
+      <div class="product-body">
+        <p class="product-name">Xtend+</p>
+        <p class="product-desc">Dagelijkse multivitamine met probiotica. Compleet en gebalanceerd.</p>
+        <p class="product-extra">Xtend+ is een veganistisch, volledig natuurlijk geavanceerd immuun- en voedingssupplement dat BalanceOil en ZinoBiotic perfect aanvult. Gemaakt ter ondersteuning van ons eigen immuunsysteem en bevat micro- en phytonutrients, waaronder 22 essentiële vitaminen en mineralen, en gezuiverde 1-3, 1-6 bèta-glucanen afkomstig van bakkersgist, een uitgebreide multivitamine supplement voor jou.</p>
+      </div>
     </div>
 
   </div>
