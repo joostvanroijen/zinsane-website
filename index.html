@@ -37,6 +37,18 @@ nav.scrolled {
 
 /* Logo */
 .nav-logo-link { text-decoration: none; display: flex; align-items: center; }
+.nav-partner-badge {
+  font-size: 0.62rem; letter-spacing: 1.8px; text-transform: uppercase;
+  color: rgba(253,251,249,0.55); font-weight: 400; font-family: 'Inter', sans-serif;
+  margin-left: 20px; padding-left: 20px;
+  border-left: 1px solid rgba(253,251,249,0.25);
+  white-space: nowrap; font-style: italic;
+  transition: color 0.4s ease;
+}
+nav.scrolled .nav-partner-badge {
+  color: var(--brown-light); opacity: 0.6;
+  border-left-color: var(--cream-dark);
+}
 .nav-logo-svg { height: 56px; width: auto; transition: all 0.4s ease; }
 .logo-wordmark { fill: #2D3F32; transition: fill 0.4s ease; }
 .logo-tagline { fill: #C9A86B; transition: fill 0.4s ease; }
@@ -643,6 +655,7 @@ footer {
       <text x="44" y="51" font-family="'Inter', sans-serif" font-size="7" font-weight="400" letter-spacing="2.5" class="logo-tagline">TEST-BASED VITALITY</text>
     </svg>
   </a>
+  <span class="nav-partner-badge">Zinzino Independent Partner</span>
   <ul class="nav-links" id="navLinks">
     <li><a href="#filosofie">Filosofie</a></li>
     <li><a href="#aanpak">Aanpak</a></li>
