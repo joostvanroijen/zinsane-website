@@ -241,6 +241,11 @@ section { padding: 120px 60px; }
   font-size: 1.1rem; color: var(--brown); font-weight: 600; letter-spacing: 0.5px;
   margin: 16px 0 12px;
 }
+.card-price-old {
+  text-decoration: line-through; color: var(--brown-light);
+  font-weight: 400; font-size: 0.95rem; margin-left: 10px; opacity: 0.7;
+}
+.card.featured .card-price-old { color: rgba(255,255,255,0.55); opacity: 1; }
 .card-desc { color: var(--brown-light); font-size: 0.92rem; margin-bottom: 28px; font-style: italic; }
 .card ul { list-style: none; margin-bottom: 32px; }
 .card ul li {
@@ -932,7 +937,7 @@ footer {
           <li>Balance Oil voor de eerste 2 maanden</li>
         </ul>
         <p class="card-price">Investering: &euro;209</p>
-        <a href="#contact" class="btn-card">Meer informatie</a>
+        <a href="#contact" class="btn-card">Ja, ik wil dit!</a>
       </div>
     </div>
 
@@ -949,6 +954,7 @@ footer {
           <li>Twee coachingsgesprekken, volgend uit je vitaliteitsscan</li>
           <li>Twee testanalysebesprekingen</li>
         </ul>
+        <p class="card-price">Investering: &euro;495 <span class="card-price-old">&euro;895</span></p>
         <a href="#contact" class="btn-card">Start jouw route</a>
       </div>
     </div>
@@ -965,6 +971,7 @@ footer {
           <li>4 tot 6 diepgaande coachingssessies</li>
           <li>Begeleiding bij leefstijloptimalisatie</li>
         </ul>
+        <p class="card-price">Investering: &euro;1995 <span class="card-price-old">&euro;2495</span></p>
         <a href="#contact" class="btn-card">Start jouw traject</a>
       </div>
     </div>
