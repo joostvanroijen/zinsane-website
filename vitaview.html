@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VitaView — Vitaliteitsscan · ZinSane</title>
+<meta name="description" content="VitaView — de ZinSane vitaliteitsscan: 50 stellingen over 5 dimensies, met je persoonlijke vitaliteitswiel.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brown:#2C2419; --brown-light:#5C4A35; --terracotta:#C4795B; --terracotta-dk:#A8623F;
+    --cream:#F5F0EB; --cream-dk:#E8E0D8; --white:#FDFBF9; --muted:#9A8C7D; --empty:#E3DDD4;
+    --d1:#6B7B5E; --d2:#C4795B; --d3:#B5776A; --d4:#8A9E7A; --d5:#7B6B5A;
+    --serif:'Playfair Display',Georgia,'Times New Roman',serif;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--brown);background:var(--cream);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+  /* ---------- top bar (screen only) ---------- */
+  .topbar{background:var(--brown);color:#fff;padding:12px 24px;font-size:13px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar .brand{font-family:var(--serif);font-size:15px;letter-spacing:.04em;font-weight:600}
+  .topbar .spacer{flex:1}
+  .btn{padding:8px 18px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:var(--terracotta);color:#fff;font-family:var(--sans);transition:background .15s}
+  .btn:hover{background:var(--terracotta-dk)}
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff}
+  .btn.ghost:hover{background:rgba(255,255,255,.12)}
+  .btn:disabled{background:#8a7f73;cursor:not-allowed;opacity:.6}
+
+  .wrap{max-width:860px;margin:0 auto;padding:40px 28px 72px}
+
+  /* ---------- form ---------- */
+  .doc-head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--terracotta);padding-bottom:14px;margin-bottom:10px;gap:20px;flex-wrap:wrap}
+  .doc-title{font-family:var(--serif);font-size:38px;font-weight:700;letter-spacing:.06em;color:var(--terracotta);line-height:1}
+  .doc-title sup{font-size:.4em;vertical-align:super}
+  .doc-sub{font-size:13px;color:var(--muted);margin-top:6px}
+  .doc-meta{font-size:12px;color:var(--muted);text-align:right}
+  .intro{font-size:14px;color:var(--brown-light);margin:16px 0 26px}
+  .intro b{color:var(--brown)}
+
+  .idfields{display:flex;gap:28px;flex-wrap:wrap;margin-bottom:30px}
+  .idfields label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--terracotta);display:block;margin-bottom:5px}
+  .idfields input{font-family:var(--sans);font-size:15px;color:var(--brown);border:none;border-bottom:1.5px solid var(--cream-dk);background:transparent;padding:4px 2px;min-width:230px;outline:none}
+  .idfields input:focus{border-bottom-color:var(--terracotta)}
+
+  .dim{margin-bottom:30px;border:1px solid var(--cream-dk);border-radius:12px;overflow:hidden;background:var(--white)}
+  .dim-head{padding:13px 20px;color:#fff;font-weight:600;font-size:15px;letter-spacing:.02em;display:flex;align-items:center;gap:10px}
+  .dim-head .lab{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;opacity:.85}
+  .dim-head .nm{font-family:var(--serif);font-size:18px;font-weight:600}
+  .dim-head .dsub{font-weight:400;opacity:.9;font-size:13px}
+  .q{display:flex;align-items:center;gap:16px;padding:11px 20px;border-top:1px solid var(--cream)}
+  .q:first-of-type{border-top:none}
+  .q .qn{width:22px;flex-shrink:0;text-align:right;font-size:12px;color:var(--muted);font-weight:600}
+  .q .qt{flex:1;font-size:14px;color:var(--brown)}
+  .scale{display:flex;gap:5px;flex-shrink:0}
+  .scale button{width:30px;height:30px;border-radius:7px;border:1.5px solid var(--cream-dk);background:var(--white);color:var(--muted);font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:all .12s}
+  .scale button:hover{border-color:var(--terracotta)}
+  .scale button.on{color:#fff;border-color:transparent}
+
+  .scalelegend{display:flex;justify-content:flex-end;gap:5px;font-size:10.5px;color:var(--muted);margin:-14px 20px 22px;text-align:right}
+
+  .genbar{position:sticky;bottom:0;background:linear-gradient(to top,var(--cream) 70%,rgba(245,240,235,0));padding:20px 0 6px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:8px}
+  .progress{flex:1;min-width:180px}
+  .progress .track{height:8px;border-radius:6px;background:var(--cream-dk);overflow:hidden}
+  .progress .fill{height:100%;background:var(--terracotta);width:0;transition:width .25s}
+  .progress .ptxt{font-size:12px;color:var(--muted);margin-top:6px}
+
+  .reflect-form{margin:34px 0 0}
+  .reflect-form h3{font-family:var(--serif);font-weight:600;color:var(--terracotta);font-size:20px;margin:0 0 4px}
+  .reflect-form p.hint{font-size:12.5px;color:var(--muted);margin:0 0 18px}
+  .rf{margin-bottom:16px}
+  .rf label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--terracotta);margin-bottom:6px}
+  .rf textarea{width:100%;font-family:var(--sans);font-size:14px;color:var(--brown);border:1px solid var(--cream-dk);border-radius:9px;padding:10px 12px;background:var(--white);resize:vertical;min-height:60px;outline:none;line-height:1.55}
+  .rf textarea:focus{border-color:var(--terracotta)}
+
+  /* ---------- report ---------- */
+  #report{display:none}
+  .rep-wrap{max-width:760px;margin:0 auto;padding:40px 28px 60px;background:#fff}
+  .rep-head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--terracotta);padding-bottom:11px;margin-bottom:30px;gap:20px}
+  .rep-head .t{font-family:var(--serif);font-size:27px;font-weight:700;letter-spacing:.02em;color:var(--brown)}
+  .rep-head .t sup{font-size:.42em;vertical-align:super}
+  .rep-head .by{font-size:12px;color:var(--muted);margin-top:4px}
+  .rep-head .when{font-size:12px;color:var(--muted);text-align:right}
+  .rep-top{display:flex;gap:36px;align-items:flex-start;margin-bottom:34px;flex-wrap:wrap}
+  .rep-wheel{flex-shrink:0;width:300px;max-width:100%}
+  .rep-scores{flex:1;min-width:250px}
+  .eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.11em;color:var(--terracotta);margin-bottom:12px}
+  table.sc{width:100%;border-collapse:collapse}
+  table.sc td{padding:7px 0;border-bottom:1px solid var(--cream)}
+  table.sc td.nm{font-size:13px;padding-right:12px}
+  table.sc td.bar{font-size:12px;letter-spacing:1px;white-space:nowrap}
+  table.sc td.val{font-size:15px;font-weight:700;text-align:right;padding-left:10px}
+  .avgbox{margin-top:14px;padding:11px 14px;background:var(--cream);border-radius:8px;display:flex;justify-content:space-between;align-items:center}
+  .avgbox .l{font-size:12px;color:var(--muted)}
+  .avgbox .v{font-size:22px;font-weight:700;color:var(--terracotta);font-family:var(--serif)}
+  .reflect{columns:2;column-gap:28px;margin-top:4px}
+  .reflect .blk{break-inside:avoid;margin-bottom:20px}
+  .reflect .rq{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--terracotta);margin-bottom:5px}
+  .reflect .ra{font-size:13px;line-height:1.6;color:#3a332b;white-space:pre-wrap;border-left:3px solid var(--cream-dk);padding-left:11px;min-height:40px}
+  .reflect .ra.empty{min-height:58px}
+  .golden{margin-top:14px;padding:18px 20px;background:var(--cream);border-radius:10px}
+  .golden .rules{margin:8px 0 0;padding:0;list-style:none;font-size:12.5px;color:var(--brown-light);line-height:1.5}
+  .golden .rules li{padding:3px 0 3px 22px;position:relative}
+  .golden .rules li:before{content:"◆";position:absolute;left:0;color:var(--terracotta);font-size:10px;top:5px}
+
+  @media print{
+    body{background:#fff}
+    .topbar,.no-print{display:none!important}
+    .wrap{display:none!important}
+    #report{display:block!important}
+    .rep-wrap{padding:0;max-width:100%}
+    @page{margin:1.4cm}
+    *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  }
+  @media(max-width:640px){
+    .scale button{width:28px;height:28px}
+    .q{flex-wrap:wrap}.q .qt{flex-basis:calc(100% - 38px)}.scale{margin-left:38px}
+    .reflect{columns:1}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="brand">VITAVIEW<sup>®</sup></span>
+  <span style="opacity:.6">Vitaliteitsscan · ZinSane</span>
+  <span class="spacer"></span>
+  <a class="btn ghost" href="index.html" style="text-decoration:none">&lsaquo; ZinSane</a>
+  <button class="btn" id="goReport">Genereer rapport ›</button>
+</div>
+
+<!-- ============ INVULSCHERM ============ -->
+<div class="wrap" id="form">
+  <div class="doc-head">
+    <div>
+      <div class="doc-title">VITAVIEW<sup>®</sup></div>
+      <div class="doc-sub">Vitaliteitsscan · 50 stellingen over 5 dimensies</div>
+      <div class="doc-sub" style="margin-top:2px;font-style:italic">Geïnspireerd op de Vitascan van Vitalogisch®</div>
+    </div>
+    <div class="doc-meta">by ZinSane</div>
+  </div>
+
+  <p class="intro">Geef elke stelling een cijfer van <b>1 (helemaal mee oneens)</b> tot <b>5 (helemaal mee eens)</b>. Hoe eerlijker je invult, hoe waardevoller je vitaliteitswiel.</p>
+
+  <div class="idfields">
+    <div><label>Naam</label><input id="naam" type="text" placeholder="Je naam"></div>
+    <div><label>Datum</label><input id="datum" type="text"></div>
+  </div>
+
+  <div id="dims">
+    <div class="dim">
+      <div class="dim-head" style="background:#6B7B5E">
+        <span class="lab">Dimensie 1</span>
+        <span class="nm">Vitalogisch</span>
+        <span class="dsub">— Bewustwording &amp; motivatie</span>
+      </div>
+      <div class="q" data-di="0" data-qi="0">
+        <div class="qn">1</div><div class="qt">Ik kan uitleggen wat vitaliteit voor mij betekent</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="0" data-qi="1">
+        <div class="qn">2</div><div class="qt">Ik kan uitleggen hoe ik mijn vitaliteit kan verbeteren</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="0" data-qi="2">
+        <div class="qn">3</div><div class="qt">Ik onderneem actief stappen om mezelf energieker te voelen</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="0" data-qi="3">
+        <div class="qn">4</div><div class="qt">Ik ben me bewust van wat mij energie geeft en wat energie kost</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="0" data-qi="4">
+        <div class="qn">5</div><div class="qt">Ik vind het belangrijk om te investeren in mijn eigen vitaliteit</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="0" data-qi="5">
+        <div class="qn">6</div><div class="qt">Ik zie het nut in van het aanpassen van mijn gedrag voor meer energie</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="0" data-qi="6">
+        <div class="qn">7</div><div class="qt">Ik weet wat ik nodig heb om vitaal te blijven in de komende jaren</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="0" data-qi="7">
+        <div class="qn">8</div><div class="qt">Ik geloof dat kleine veranderingen in mijn leefstijl groot verschil maken</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="0" data-qi="8">
+        <div class="qn">9</div><div class="qt">Ik neem regelmatig de tijd om te reflecteren op mijn eigen vitaliteit</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="0" data-qi="9">
+        <div class="qn">10</div><div class="qt">Ik weet welke keuzes ik kan maken om mijn energiebalans te verbeteren</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+    </div>
+    <div class="dim">
+      <div class="dim-head" style="background:#C4795B">
+        <span class="lab">Dimensie 2</span>
+        <span class="nm">Fysiologisch</span>
+        <span class="dsub">— Lichaam &amp; leefstijl</span>
+      </div>
+      <div class="q" data-di="1" data-qi="0">
+        <div class="qn">11</div><div class="qt">Ik pas gezonde voeding toe in mijn dagelijkse leven</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="1" data-qi="1">
+        <div class="qn">12</div><div class="qt">Ik beweeg minimaal 2 à 3 keer per week ongeveer 30 tot 60 minuten</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="1" data-qi="2">
+        <div class="qn">13</div><div class="qt">Ik slaap voldoende en word uitgerust wakker</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="1" data-qi="3">
+        <div class="qn">14</div><div class="qt">Ik neem voldoende ontspanning gedurende de dag en in de week</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="1" data-qi="4">
+        <div class="qn">15</div><div class="qt">Ik herken lichamelijke klachten bij mezelf en onderneem actie</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="1" data-qi="5">
+        <div class="qn">16</div><div class="qt">Ik let bewust op mijn houding en ergonomie tijdens mijn werk</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="1" data-qi="6">
+        <div class="qn">17</div><div class="qt">Ik drink voldoende water gedurende de dag</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="1" data-qi="7">
+        <div class="qn">18</div><div class="qt">Ik beperk alcohol, suiker en andere ongezonde gewoontes</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="1" data-qi="8">
+        <div class="qn">19</div><div class="qt">Ik plan actief ruimte in voor herstel na inspanning of drukke periodes</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="1" data-qi="9">
+        <div class="qn">20</div><div class="qt">Ik neem regelmatig korte pauzes tijdens mijn werkdag</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+    </div>
+    <div class="dim">
+      <div class="dim-head" style="background:#B5776A">
+        <span class="lab">Dimensie 3</span>
+        <span class="nm">Psychologisch</span>
+        <span class="dsub">— Mindset &amp; zelfbewustzijn</span>
+      </div>
+      <div class="q" data-di="2" data-qi="0">
+        <div class="qn">21</div><div class="qt">Ik weet hoe mijn overtuigingen mijn gedrag beïnvloeden</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="2" data-qi="1">
+        <div class="qn">22</div><div class="qt">Ik kan omgaan met negatieve emoties op een gezonde manier</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="2" data-qi="2">
+        <div class="qn">23</div><div class="qt">Ik weet waarom ik mezelf waardeer</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="2" data-qi="3">
+        <div class="qn">24</div><div class="qt">Ik weet hoe ik goed om kan gaan met tegenslagen</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="2" data-qi="4">
+        <div class="qn">25</div><div class="qt">Ik geloof dat ik kan groeien in wat ik tegenkom in het leven</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="2" data-qi="5">
+        <div class="qn">26</div><div class="qt">Ik herken wanneer mijn gedachten mij belemmeren en kan dit doorbreken</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="2" data-qi="6">
+        <div class="qn">27</div><div class="qt">Ik ben in staat om vanuit een positieve grondhouding te leven en te werken</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="2" data-qi="7">
+        <div class="qn">28</div><div class="qt">Ik heb een goed beeld van mijn eigen sterke en zwakke kanten</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="2" data-qi="8">
+        <div class="qn">29</div><div class="qt">Ik maak bewust keuzes in plaats van op de automatische piloot te handelen</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="2" data-qi="9">
+        <div class="qn">30</div><div class="qt">Ik kan loskomen van piekeren en mijn hoofd leegmaken als dat nodig is</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+    </div>
+    <div class="dim">
+      <div class="dim-head" style="background:#8A9E7A">
+        <span class="lab">Dimensie 4</span>
+        <span class="nm">Ecologisch</span>
+        <span class="dsub">— Omgeving &amp; sociale context</span>
+      </div>
+      <div class="q" data-di="3" data-qi="0">
+        <div class="qn">31</div><div class="qt">Ik begeef me in een omgeving die me energie geeft, zowel werk als privé</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="3" data-qi="1">
+        <div class="qn">32</div><div class="qt">Ik krijg voldoende ruimte om me te ontwikkelen op mijn werk</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="3" data-qi="2">
+        <div class="qn">33</div><div class="qt">Ik ervaar voldoende steun en waardering van mijn leidinggevende</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="3" data-qi="3">
+        <div class="qn">34</div><div class="qt">Ik ervaar een gezonde balans tussen werk en privé</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="3" data-qi="4">
+        <div class="qn">35</div><div class="qt">Ik heb goede werkrelaties met mijn collega's</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="3" data-qi="5">
+        <div class="qn">36</div><div class="qt">Ik weet wat me energie kost in mijn omgeving en bespreek dit actief</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="3" data-qi="6">
+        <div class="qn">37</div><div class="qt">Mijn werkomgeving ondersteunt mij in gezond en vitaal werken</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="3" data-qi="7">
+        <div class="qn">38</div><div class="qt">Ik voel me gewaardeerd en gehoord in mijn directe omgeving</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="3" data-qi="8">
+        <div class="qn">39</div><div class="qt">Ik omring mezelf met mensen die een positieve invloed op mij hebben</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="3" data-qi="9">
+        <div class="qn">40</div><div class="qt">Ik kan goed omgaan met tegenslagen die vanuit mijn omgeving komen</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+    </div>
+    <div class="dim">
+      <div class="dim-head" style="background:#7B6B5A">
+        <span class="lab">Dimensie 5</span>
+        <span class="nm">Filosofisch</span>
+        <span class="dsub">— Zingeving &amp; waarden</span>
+      </div>
+      <div class="q" data-di="4" data-qi="0">
+        <div class="qn">41</div><div class="qt">Ik vind dat mijn werk ertoe doet</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="4" data-qi="1">
+        <div class="qn">42</div><div class="qt">Ik doe werk wat bij mijn drijfveren aansluit</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="4" data-qi="2">
+        <div class="qn">43</div><div class="qt">Ik kan mijn talenten optimaal benutten in mijn werk</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="4" data-qi="3">
+        <div class="qn">44</div><div class="qt">Mijn normen en waarden beïnvloeden mijn vitaliteit positief</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="4" data-qi="4">
+        <div class="qn">45</div><div class="qt">Ik weet wat mijn persoonlijke levensdoel of missie is</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="4" data-qi="5">
+        <div class="qn">46</div><div class="qt">Ik handel in mijn werk op een eerlijke en integere manier</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="4" data-qi="6">
+        <div class="qn">47</div><div class="qt">Ik vind voldoening in wat ik dagelijks doe</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="4" data-qi="7">
+        <div class="qn">48</div><div class="qt">Ik zoek bewust een omgeving die aansluit bij mijn waarden en normen</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="4" data-qi="8">
+        <div class="qn">49</div><div class="qt">Ik weet waar ik voor sta en laat dat zien in mijn gedrag</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+      <div class="q" data-di="4" data-qi="9">
+        <div class="qn">50</div><div class="qt">Ik ervaar dat mijn werk bijdraagt aan iets groters dan alleen mezelf</div>
+        <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reflect-form">
+    <h3>Reflectie &amp; actie</h3>
+    <p class="hint">Optioneel — vul in wat je wilt meenemen in je rapport. Leeg gelaten velden verschijnen als ruimte om met de hand in te vullen.</p>
+    <div class="rf"><label>Wat valt je op in je vitaliteitswiel?</label><textarea data-r="0"></textarea></div>
+    <div class="rf"><label>Welke dimensie vraagt de meeste aandacht?</label><textarea data-r="1"></textarea></div>
+    <div class="rf"><label>Hoe ziet jouw ideale vitaliteit eruit?</label><textarea data-r="2"></textarea></div>
+    <div class="rf"><label>Eerste concrete stap deze week</label><textarea data-r="3"></textarea></div>
+  </div>
+
+  <div class="genbar no-print">
+    <div class="progress">
+      <div class="track"><div class="fill" id="pfill"></div></div>
+      <div class="ptxt" id="ptxt">0 van 50 stellingen ingevuld</div>
+    </div>
+    <button class="btn" id="goReport2">Genereer rapport ›</button>
+  </div>
+</div>
+
+<!-- ============ RAPPORT ============ -->
+<div id="report">
+  <div class="topbar no-print">
+    <span class="brand">Vitaliteitswiel</span>
+    <span class="spacer"></span>
+    <button class="btn ghost" id="backBtn">‹ Terug naar invullen</button>
+    <a class="btn ghost" href="index.html" style="text-decoration:none">&lsaquo; ZinSane</a>
+    <button class="btn" id="printBtn">Afdrukken / Opslaan als PDF</button>
+  </div>
+  <div class="rep-wrap">
+    <div class="rep-head">
+      <div>
+        <div class="t">Vitaliteitswiel<sup>®</sup></div>
+        <div class="by">VITAVIEW · by ZinSane</div>
+        <div class="by" style="margin-top:1px;font-style:italic">Geïnspireerd op de Vitascan van Vitalogisch®</div>
+      </div>
+      <div class="when" id="repWhen"></div>
+    </div>
+
+    <div class="rep-top">
+      <div class="rep-wheel" id="wheel"></div>
+      <div class="rep-scores">
+        <div class="eyebrow">Scores per dimensie</div>
+        <table class="sc"><tbody id="scoreRows"></tbody></table>
+        <div class="avgbox">
+          <span class="l">Gemiddelde vitaliteit</span>
+          <span class="v" id="avgVal">–</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="eyebrow">Reflectie &amp; actie</div>
+    <div class="reflect" id="reflectOut"></div>
+
+    <div class="golden">
+      <div class="eyebrow" style="margin-bottom:2px">Vijf gouden regels voor meer vitaliteit</div>
+      <ul class="rules">
+        <li>Wees zelfbewust, houd de zaag scherp en blijf je ontwikkelen</li>
+        <li>Beweeg voldoende, eet gezond en neem voldoende rust</li>
+        <li>Alles wat je aandacht geeft groeit — richt je op het positieve</li>
+        <li>Zoek een (werk)omgeving die bij jouw mentale en fysieke gestel past</li>
+        <li>Weet wat je levensdoel is en ga voor werk waar je ertoe doet</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+const DIMS=[
+ {key:"Vitalogisch",lab:"Vitalogisch",sub:"Bewustwording & motivatie",color:"#6B7B5E",q:[
+  "Ik kan uitleggen wat vitaliteit voor mij betekent",
+  "Ik kan uitleggen hoe ik mijn vitaliteit kan verbeteren",
+  "Ik onderneem actief stappen om mezelf energieker te voelen",
+  "Ik ben me bewust van wat mij energie geeft en wat energie kost",
+  "Ik vind het belangrijk om te investeren in mijn eigen vitaliteit",
+  "Ik zie het nut in van het aanpassen van mijn gedrag voor meer energie",
+  "Ik weet wat ik nodig heb om vitaal te blijven in de komende jaren",
+  "Ik geloof dat kleine veranderingen in mijn leefstijl groot verschil maken",
+  "Ik neem regelmatig de tijd om te reflecteren op mijn eigen vitaliteit",
+  "Ik weet welke keuzes ik kan maken om mijn energiebalans te verbeteren"]},
+ {key:"Fysiologisch",lab:"Fysiologisch",sub:"Lichaam & leefstijl",color:"#C4795B",q:[
+  "Ik pas gezonde voeding toe in mijn dagelijkse leven",
+  "Ik beweeg minimaal 2 à 3 keer per week ongeveer 30 tot 60 minuten",
+  "Ik slaap voldoende en word uitgerust wakker",
+  "Ik neem voldoende ontspanning gedurende de dag en in de week",
+  "Ik herken lichamelijke klachten bij mezelf en onderneem actie",
+  "Ik let bewust op mijn houding en ergonomie tijdens mijn werk",
+  "Ik drink voldoende water gedurende de dag",
+  "Ik beperk alcohol, suiker en andere ongezonde gewoontes",
+  "Ik plan actief ruimte in voor herstel na inspanning of drukke periodes",
+  "Ik neem regelmatig korte pauzes tijdens mijn werkdag"]},
+ {key:"Psychologisch",lab:"Psychologisch",sub:"Mindset & zelfbewustzijn",color:"#B5776A",q:[
+  "Ik weet hoe mijn overtuigingen mijn gedrag beïnvloeden",
+  "Ik kan omgaan met negatieve emoties op een gezonde manier",
+  "Ik weet waarom ik mezelf waardeer",
+  "Ik weet hoe ik goed om kan gaan met tegenslagen",
+  "Ik geloof dat ik kan groeien in wat ik tegenkom in het leven",
+  "Ik herken wanneer mijn gedachten mij belemmeren en kan dit doorbreken",
+  "Ik ben in staat om vanuit een positieve grondhouding te leven en te werken",
+  "Ik heb een goed beeld van mijn eigen sterke en zwakke kanten",
+  "Ik maak bewust keuzes in plaats van op de automatische piloot te handelen",
+  "Ik kan loskomen van piekeren en mijn hoofd leegmaken als dat nodig is"]},
+ {key:"Ecologisch",lab:"Ecologisch",sub:"Omgeving & sociale context",color:"#8A9E7A",q:[
+  "Ik begeef me in een omgeving die me energie geeft, zowel werk als privé",
+  "Ik krijg voldoende ruimte om me te ontwikkelen op mijn werk",
+  "Ik ervaar voldoende steun en waardering van mijn leidinggevende",
+  "Ik ervaar een gezonde balans tussen werk en privé",
+  "Ik heb goede werkrelaties met mijn collega's",
+  "Ik weet wat me energie kost in mijn omgeving en bespreek dit actief",
+  "Mijn werkomgeving ondersteunt mij in gezond en vitaal werken",
+  "Ik voel me gewaardeerd en gehoord in mijn directe omgeving",
+  "Ik omring mezelf met mensen die een positieve invloed op mij hebben",
+  "Ik kan goed omgaan met tegenslagen die vanuit mijn omgeving komen"]},
+ {key:"Filosofisch",lab:"Filosofisch",sub:"Zingeving & waarden",color:"#7B6B5A",q:[
+  "Ik vind dat mijn werk ertoe doet",
+  "Ik doe werk wat bij mijn drijfveren aansluit",
+  "Ik kan mijn talenten optimaal benutten in mijn werk",
+  "Mijn normen en waarden beïnvloeden mijn vitaliteit positief",
+  "Ik weet wat mijn persoonlijke levensdoel of missie is",
+  "Ik handel in mijn werk op een eerlijke en integere manier",
+  "Ik vind voldoening in wat ik dagelijks doe",
+  "Ik zoek bewust een omgeving die aansluit bij mijn waarden en normen",
+  "Ik weet waar ik voor sta en laat dat zien in mijn gedrag",
+  "Ik ervaar dat mijn werk bijdraagt aan iets groters dan alleen mezelf"]}
+];
+const REFLECT_Q=["Wat valt je op in je vitaliteitswiel?","Welke dimensie vraagt de meeste aandacht?","Hoe ziet jouw ideale vitaliteit eruit?","Eerste concrete stap deze week"];
+const LS="zinsane_vitascan_v1";
+const answers={}; // "d-i" -> 1..5
+
+/* ---- date default ---- */
+const MONTHS=["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december"];
+function todayNL(){const d=new Date();return d.getDate()+" "+MONTHS[d.getMonth()]+" "+d.getFullYear();}
+
+/* ---- wire up scale buttons (statements are static HTML for share-safety) ---- */
+document.querySelectorAll('#dims .q').forEach(row=>{
+  const di=+row.dataset.di, qi=+row.dataset.qi;
+  const btns=row.querySelectorAll('.scale button');
+  btns.forEach((b,ci)=>{ b.addEventListener('click',()=>{
+    answers[di+'-'+qi]=ci+1;
+    btns.forEach((c,k)=>{c.classList.toggle('on',k===ci);c.style.background=k===ci?DIMS[di].color:'';});
+    save();updateProgress();
+  });});
+});
+document.getElementById('datum').value=todayNL();
+
+/* ---- progress ---- */
+function countAnswered(){return Object.keys(answers).length;}
+function updateProgress(){
+  const n=countAnswered();
+  document.getElementById('pfill').style.width=(n/50*100)+'%';
+  document.getElementById('ptxt').textContent=n+' van 50 stellingen ingevuld'+(n<50?'':' ✓');
+}
+
+/* ---- persistence (best-effort) ---- */
+function save(){try{localStorage.setItem(LS,JSON.stringify({
+  answers,naam:val('naam'),datum:val('datum'),
+  refl:[...document.querySelectorAll('.rf textarea')].map(t=>t.value)
+}));}catch(e){}}
+function val(id){return document.getElementById(id).value;}
+function load(){try{const s=JSON.parse(localStorage.getItem(LS)||'null');if(!s)return;
+  Object.assign(answers,s.answers||{});
+  if(s.naam)document.getElementById('naam').value=s.naam;
+  if(s.datum)document.getElementById('datum').value=s.datum;
+  (s.refl||[]).forEach((v,i)=>{const t=document.querySelector('.rf textarea[data-r="'+i+'"]');if(t)t.value=v;});
+  // reflect selected buttons
+  document.querySelectorAll('.dim').forEach((box,di)=>{
+    box.querySelectorAll('.q').forEach((row,qi)=>{const v=answers[di+'-'+qi];
+      if(v){const btns=row.querySelectorAll('.scale button');btns[v-1].classList.add('on');btns[v-1].style.background=DIMS[di].color;}});
+  });
+}catch(e){}}
+['naam','datum'].forEach(id=>document.getElementById(id).addEventListener('input',save));
+document.querySelectorAll('.rf textarea').forEach(t=>t.addEventListener('input',save));
+
+/* ---- scoring ---- */
+function dimScore(di){ // returns {avg5, score10, n}
+  let sum=0,n=0;
+  for(let qi=0;qi<10;qi++){const v=answers[di+'-'+qi];if(v){sum+=v;n++;}}
+  if(!n)return{avg5:0,score10:0,n:0};
+  const avg5=sum/n;return{avg5,score10:avg5*2,n};
+}
+function squares(score10,color){
+  const f=Math.round(score10);const full='■'.repeat(f);const empty='■'.repeat(10-f);
+  return `<span style="color:${color}">${full}</span><span style="color:var(--empty)">${empty}</span>`;
+}
+
+/* ---- build report ---- */
+function buildReport(){
+  const naam=val('naam').trim();
+  const datum=val('datum').trim()||todayNL();
+  document.getElementById('repWhen').innerHTML='Ingevuld op '+datum+(naam?('<br>'+naam):'');
+
+  // score rows
+  const rows=DIMS.map((dim,di)=>{const s=dimScore(di);
+    const disp=s.n?s.score10.toFixed(1):'–';
+    return `<tr>
+      <td class="nm">${dim.lab}</td>
+      <td class="bar">${squares(s.score10,dim.color)}</td>
+      <td class="val" style="color:${dim.color}">${disp}</td></tr>`;}).join('');
+  document.getElementById('scoreRows').innerHTML=rows;
+
+  // average
+  const scored=DIMS.map((d,di)=>dimScore(di)).filter(s=>s.n);
+  const avg=scored.length?scored.reduce((a,s)=>a+s.score10,0)/scored.length:0;
+  document.getElementById('avgVal').textContent=(scored.length?avg.toFixed(1):'–')+'/10';
+
+  // reflection
+  const refl=[...document.querySelectorAll('.rf textarea')].map(t=>t.value.trim());
+  document.getElementById('reflectOut').innerHTML=REFLECT_Q.map((q,i)=>{
+    const a=refl[i];
+    return `<div class="blk"><div class="rq">${q}</div><div class="ra${a?'':' empty'}">${a?escapeHtml(a):''}</div></div>`;
+  }).join('');
+
+  drawWheel();
+}
+function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+/* ---- wheel (SVG, 5 wedges, radius = score/10) ---- */
+function drawWheel(){
+  const cx=150,cy=150,R=106;
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(NS,'svg');
+  svg.setAttribute('viewBox',`-74 -24 448 368`);svg.setAttribute('width','100%');
+  const n=DIMS.length,step=2*Math.PI/n,start=-Math.PI/2;
+  function pt(ang,r){return [cx+r*Math.cos(ang),cy+r*Math.sin(ang)];}
+  // grid rings
+  for(let g=1;g<=5;g++){
+    const c=document.createElementNS(NS,'circle');
+    c.setAttribute('cx',cx);c.setAttribute('cy',cy);c.setAttribute('r',R*g/5);
+    c.setAttribute('fill','none');c.setAttribute('stroke','#E8E0D8');c.setAttribute('stroke-width',g===5?1.3:0.8);
+    svg.appendChild(c);
+  }
+  // wedges
+  DIMS.forEach((dim,i)=>{
+    const a0=start+i*step,a1=a0+step;
+    const s=dimScore(i);const r=R*(s.score10/10)||0;
+    if(r>0){
+      const [x0,y0]=pt(a0,r),[x1,y1]=pt(a1,r);
+      const large=step>Math.PI?1:0;
+      const path=document.createElementNS(NS,'path');
+      path.setAttribute('d',`M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${large} 1 ${x1} ${y1} Z`);
+      path.setAttribute('fill',dim.color);path.setAttribute('fill-opacity','0.82');
+      path.setAttribute('stroke','#fff');path.setAttribute('stroke-width','1.5');
+      svg.appendChild(path);
+    }
+    // spokes
+    const [sx,sy]=pt(a0,R);
+    const ln=document.createElementNS(NS,'line');
+    ln.setAttribute('x1',cx);ln.setAttribute('y1',cy);ln.setAttribute('x2',sx);ln.setAttribute('y2',sy);
+    ln.setAttribute('stroke','#E8E0D8');ln.setAttribute('stroke-width','0.8');svg.appendChild(ln);
+    // label
+    const mid=a0+step/2;const [lx,ly]=pt(mid,R+20);
+    const tx=document.createElementNS(NS,'text');
+    tx.setAttribute('x',lx);tx.setAttribute('y',ly);
+    tx.setAttribute('font-size','10.5');tx.setAttribute('font-weight','700');tx.setAttribute('fill',dim.color);
+    tx.setAttribute('font-family',"Inter,Arial,sans-serif");
+    tx.setAttribute('text-anchor',Math.abs(Math.cos(mid))<0.2?'middle':(Math.cos(mid)>0?'start':'end'));
+    tx.setAttribute('dominant-baseline',Math.sin(mid)>0.4?'hanging':(Math.sin(mid)<-0.4?'auto':'middle'));
+    tx.textContent=dim.lab;
+    svg.appendChild(tx);
+  });
+  const w=document.getElementById('wheel');w.innerHTML='';w.appendChild(svg);
+}
+
+/* ---- navigation ---- */
+function showReport(){
+  if(countAnswered()<50){
+    if(!confirm('Je hebt '+countAnswered()+' van de 50 stellingen ingevuld. Toch een rapport genereren? Niet-ingevulde dimensies tellen alleen mee voor de ingevulde stellingen.'))return;
+  }
+  buildReport();
+  document.getElementById('form').style.display='none';
+  document.querySelector('.topbar').style.display='none';
+  document.getElementById('report').style.display='block';
+  window.scrollTo(0,0);
+}
+function backToForm(){
+  document.getElementById('report').style.display='none';
+  document.getElementById('form').style.display='block';
+  document.querySelector('.topbar').style.display='flex';
+  window.scrollTo(0,0);
+}
+document.getElementById('goReport').onclick=showReport;
+document.getElementById('goReport2').onclick=showReport;
+document.getElementById('backBtn').onclick=backToForm;
+document.getElementById('printBtn').onclick=()=>window.print();
+
+load();updateProgress();
+</script>
+</body>
+</html>

@@ -268,6 +268,22 @@ section { padding: 120px 60px; }
   display: block;
 }
 
+/* ===================== VITAVIEW TEASER ===================== */
+.vitaview-teaser {
+  margin-top: 30px; background: var(--white);
+  border-radius: 24px; padding: 40px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 30px; flex-wrap: wrap;
+  border: 1px solid transparent; transition: all 0.4s ease;
+}
+.vitaview-teaser:hover { border-color: var(--cream-dark); box-shadow: 0 12px 48px rgba(44,36,25,0.06); }
+.vitaview-teaser-body { min-width: 0; }
+.vitaview-teaser-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 400; color: var(--brown); margin-bottom: 8px; }
+.vitaview-teaser-text { color: var(--brown-light); font-size: 0.98rem; max-width: 560px; }
+@media (max-width: 700px) {
+  .vitaview-teaser { padding: 32px 28px; flex-direction: column; align-items: flex-start; }
+}
+
 /* ===================== TESTIMONIALS ===================== */
 .testimonials { background: var(--white); }
 .testimonials-carousel-wrapper {
@@ -673,6 +689,7 @@ footer {
     <li><a href="#filosofie">Filosofie</a></li>
     <li><a href="#aanpak">Aanpak</a></li>
     <li><a href="#aanbod">Aanbod</a></li>
+    <li><a href="vitaview.html">VitaView</a></li>
     <li><a href="#sabine">Sabine</a></li>
     <li><a href="#clubzinsane">Club ZinSane</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -975,6 +992,15 @@ footer {
       </div>
     </div>
 
+  </div>
+
+  <div class="vitaview-teaser fade-in">
+    <div class="vitaview-teaser-body">
+      <p class="section-label" style="margin-bottom:12px;">Nieuw &mdash; VitaView</p>
+      <h3 class="vitaview-teaser-title">VitaView &mdash; Vitaliteitsscan</h3>
+      <p class="vitaview-teaser-text">Breng je vitaliteit over vijf dimensies in beeld. 50 stellingen, direct je persoonlijke vitaliteitswiel.</p>
+    </div>
+    <a href="vitaview.html" class="btn-primary">Doe de vitaliteitsscan &#8594;</a>
   </div>
 </section>
 
@@ -1382,6 +1408,7 @@ footer {
         <li><a href="#filosofie">Filosofie</a></li>
         <li><a href="#aanpak">Aanpak</a></li>
         <li><a href="#aanbod">Aanbod</a></li>
+        <li><a href="vitaview.html">VitaView</a></li>
         <li><a href="#sabine">Sabine</a></li>
         <li><a href="#clubzinsane">Club ZinSane</a></li>
         <li><a href="#contact">Contact</a></li>
