@@ -409,6 +409,7 @@
       <div class="track"><div class="fill" id="pfill"></div></div>
       <div class="ptxt" id="ptxt">0 van 50 stellingen ingevuld</div>
     </div>
+    <button class="btn ghost-dk" id="resetBtn" type="button">Opnieuw beginnen</button>
     <button class="btn" id="goReport2">Genereer rapport ›</button>
   </div>
 </div>
@@ -778,6 +779,21 @@ async function sendResults(){
   }
 }
 var _sendBtn=document.getElementById('sendBtn');if(_sendBtn)_sendBtn.addEventListener('click',sendResults);
+
+/* ---- scan opnieuw beginnen ---- */
+function resetScan(){
+  if(!confirm('Weet je zeker dat je opnieuw wilt beginnen? Al je antwoorden, reflecties en gegevens worden gewist.')) return;
+  try{localStorage.removeItem(LS);}catch(e){}
+  Object.keys(answers).forEach(function(k){delete answers[k];});
+  if(typeof reflVals!=='undefined'){for(var i=0;i<reflVals.length;i++)reflVals[i]='';}
+  document.querySelectorAll('#dims .scale button').forEach(function(b){b.classList.remove('on');b.style.background='';});
+  ['naam','ctaNaam','ctaEmail'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+  var d=document.getElementById('datum');if(d)d.value=todayNL();
+  document.querySelectorAll('#reflectOut .ra-input').forEach(function(t){t.value='';});
+  updateProgress();save();
+  window.scrollTo(0,0);
+}
+var _resetBtn=document.getElementById('resetBtn');if(_resetBtn)_resetBtn.addEventListener('click',resetScan);
 
 load();updateProgress();
 </script>
