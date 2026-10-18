@@ -30,7 +30,7 @@
   .btn.ghost:hover{background:rgba(255,255,255,.12)}
   .btn:disabled{background:#8a7f73;cursor:not-allowed;opacity:.6}
 
-  .wrap{max-width:860px;margin:0 auto;padding:40px 28px 72px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 40px 72px}
 
   /* ---------- form ---------- */
   .doc-head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--terracotta);padding-bottom:14px;margin-bottom:10px;gap:20px;flex-wrap:wrap}
@@ -78,7 +78,7 @@
 
   /* ---------- report ---------- */
   #report{display:none}
-  .rep-wrap{max-width:760px;margin:0 auto;padding:40px 28px 60px;background:#fff}
+  .rep-wrap{max-width:760px;margin:0 auto;padding:44px 44px 60px;background:#fff}
   .rep-head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--terracotta);padding-bottom:11px;margin-bottom:30px;gap:20px}
   .rep-head .t{font-family:var(--serif);font-size:27px;font-weight:700;letter-spacing:.02em;color:var(--brown)}
   .rep-head .t sup{font-size:.42em;vertical-align:super}
@@ -96,15 +96,16 @@
   .avgbox{margin-top:14px;padding:11px 14px;background:var(--cream);border-radius:8px;display:flex;justify-content:space-between;align-items:center}
   .avgbox .l{font-size:12px;color:var(--muted)}
   .avgbox .v{font-size:22px;font-weight:700;color:var(--terracotta);font-family:var(--serif)}
-  .reflect{columns:2;column-gap:28px;margin-top:4px}
-  .reflect .blk{break-inside:avoid;margin-bottom:20px}
+  .reflect-hint{font-size:12px;color:var(--muted);margin:-2px 0 16px;max-width:640px}
+  .reflect{display:grid;grid-template-columns:1fr 1fr;column-gap:28px;row-gap:6px;margin-top:4px}
+  .reflect .blk{break-inside:avoid;margin-bottom:18px}
   .reflect .rq{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--terracotta);margin-bottom:5px}
-  .reflect .ra{font-size:13px;line-height:1.6;color:#3a332b;white-space:pre-wrap;border-left:3px solid var(--cream-dk);padding-left:11px;min-height:40px}
-  .reflect .ra.empty{min-height:58px}
+  .reflect .ra-input{width:100%;box-sizing:border-box;font-family:var(--sans);font-size:13px;line-height:1.6;color:#3a332b;border:none;border-left:3px solid var(--cream-dk);background:var(--cream);border-radius:0 7px 7px 0;padding:8px 11px;resize:none;outline:none;overflow:hidden;min-height:54px;display:block}
+  .reflect .ra-input:focus{background:#fff;border-left-color:var(--terracotta);box-shadow:0 0 0 1px var(--cream-dk)}
   .golden{margin-top:14px;padding:18px 20px;background:var(--cream);border-radius:10px}
   .golden .rules{margin:8px 0 0;padding:0;list-style:none;font-size:12.5px;color:var(--brown-light);line-height:1.5}
   .golden .rules li{padding:3px 0 3px 22px;position:relative}
-  .cta{margin-top:26px;padding:22px;background:var(--cream);border-radius:12px;border:1px solid var(--cream-dk)}
+  .cta{margin-top:22px;padding:22px;background:var(--cream);border-radius:12px;border:1px solid var(--cream-dk)}
   .cta-intro{font-size:13px;color:var(--brown-light);margin:0 0 14px}
   .cta-fields{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
   .cta-fields input{flex:1;min-width:180px;font-family:var(--sans);font-size:14px;color:var(--brown);border:1px solid var(--cream-dk);border-radius:9px;padding:10px 12px;background:var(--white);outline:none}
@@ -118,20 +119,22 @@
   .cta-privacy{font-size:11.5px;color:var(--muted);line-height:1.5;margin:12px 0 0}
   .cta-privacy a{color:var(--terracotta);text-decoration:underline}
   .golden .rules li:before{content:"◆";position:absolute;left:0;color:var(--terracotta);font-size:10px;top:5px}
+  .rep-cta{margin:24px 0 0;padding-top:18px;border-top:2px solid var(--terracotta);font-size:14px;line-height:1.6;color:var(--brown)}
 
   @media print{
     body{background:#fff}
     .topbar,.no-print{display:none!important}
     .wrap{display:none!important}
     #report{display:block!important}
-    .rep-wrap{padding:0;max-width:100%}
-    @page{margin:1.4cm}
+    .rep-wrap{padding:6mm 4mm;max-width:100%}
+    .reflect .ra-input{background:transparent!important;box-shadow:none!important;border-left:3px solid var(--cream-dk)!important}
+    @page{margin:1.8cm}
     *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
   }
   @media(max-width:640px){
     .scale button{width:28px;height:28px}
     .q{flex-wrap:wrap}.q .qt{flex-basis:calc(100% - 38px)}.scale{margin-left:38px}
-    .reflect{columns:1}
+    .reflect{grid-template-columns:1fr}
   }
 </style>
 </head>
@@ -401,15 +404,6 @@
     </div>
   </div>
 
-  <div class="reflect-form">
-    <h3>Reflectie &amp; actie</h3>
-    <p class="hint">Optioneel — vul in wat je wilt meenemen in je rapport. Leeg gelaten velden verschijnen als ruimte om met de hand in te vullen.</p>
-    <div class="rf"><label>Wat valt je op in je vitaliteitswiel?</label><textarea data-r="0"></textarea></div>
-    <div class="rf"><label>Welke dimensie vraagt de meeste aandacht?</label><textarea data-r="1"></textarea></div>
-    <div class="rf"><label>Hoe ziet jouw ideale vitaliteit eruit?</label><textarea data-r="2"></textarea></div>
-    <div class="rf"><label>Eerste concrete stap deze week</label><textarea data-r="3"></textarea></div>
-  </div>
-
   <div class="genbar no-print">
     <div class="progress">
       <div class="track"><div class="fill" id="pfill"></div></div>
@@ -451,6 +445,7 @@
     </div>
 
     <div class="eyebrow">Reflectie &amp; actie</div>
+    <p class="reflect-hint no-print">Vul hieronder je reflectie in — op basis van je wiel hierboven. Wat je typt verschijnt in de afdruk/PDF; lege velden blijven ruimte om met de hand in te vullen.</p>
     <div class="reflect" id="reflectOut"></div>
 
     <div class="golden">
@@ -463,6 +458,8 @@
         <li>Weet wat je levensdoel is en ga voor werk waar je ertoe doet</li>
       </ul>
     </div>
+
+    <p class="rep-cta"><strong>Maak een afspraak met Sabine om jouw Vitaliteitswiel kosteloos te bespreken, waarna je gebruik kan maken van 10% extra voordeel op een ZinSane 120&trade; of ZinSane Premium traject.</strong></p>
 
     <div class="cta no-print">
       <div class="eyebrow" style="margin-bottom:6px">Ontvang je resultaten &amp; plan een gesprek</div>
@@ -568,16 +565,16 @@ function updateProgress(){
 }
 
 /* ---- persistence (best-effort) ---- */
+const reflVals=["","","",""];           // reflection answers (filled in on the report)
 function save(){try{localStorage.setItem(LS,JSON.stringify({
-  answers,naam:val('naam'),datum:val('datum'),
-  refl:[...document.querySelectorAll('.rf textarea')].map(t=>t.value)
+  answers,naam:val('naam'),datum:val('datum'),refl:reflVals
 }));}catch(e){}}
 function val(id){return document.getElementById(id).value;}
 function load(){try{const s=JSON.parse(localStorage.getItem(LS)||'null');if(!s)return;
   Object.assign(answers,s.answers||{});
   if(s.naam)document.getElementById('naam').value=s.naam;
   if(s.datum)document.getElementById('datum').value=s.datum;
-  (s.refl||[]).forEach((v,i)=>{const t=document.querySelector('.rf textarea[data-r="'+i+'"]');if(t)t.value=v;});
+  (s.refl||[]).forEach((v,i)=>{if(i<reflVals.length)reflVals[i]=v||"";});
   // reflect selected buttons
   document.querySelectorAll('.dim').forEach((box,di)=>{
     box.querySelectorAll('.q').forEach((row,qi)=>{const v=answers[di+'-'+qi];
@@ -585,7 +582,6 @@ function load(){try{const s=JSON.parse(localStorage.getItem(LS)||'null');if(!s)r
   });
 }catch(e){}}
 ['naam','datum'].forEach(id=>document.getElementById(id).addEventListener('input',save));
-document.querySelectorAll('.rf textarea').forEach(t=>t.addEventListener('input',save));
 
 /* ---- scoring ---- */
 function dimScore(di){ // returns {avg5, score10, n}
@@ -619,18 +615,23 @@ function buildReport(){
   const avg=scored.length?scored.reduce((a,s)=>a+s.score10,0)/scored.length:0;
   document.getElementById('avgVal').textContent=(scored.length?avg.toFixed(1):'–')+'/10';
 
-  // reflection
-  const refl=[...document.querySelectorAll('.rf textarea')].map(t=>t.value.trim());
-  document.getElementById('reflectOut').innerHTML=REFLECT_Q.map((q,i)=>{
-    const a=refl[i];
-    return `<div class="blk"><div class="rq">${q}</div><div class="ra${a?'':' empty'}">${a?escapeHtml(a):''}</div></div>`;
-  }).join('');
+  // reflection — editable fields, filled in AFTER seeing the wheel
+  const out=document.getElementById('reflectOut');
+  out.innerHTML=REFLECT_Q.map((q,i)=>
+    `<div class="blk"><div class="rq">${q}</div>`+
+    `<textarea class="ra-input" data-r="${i}" rows="2" placeholder="Schrijf hier…">${escapeHtml(reflVals[i]||'')}</textarea></div>`
+  ).join('');
+  out.querySelectorAll('.ra-input').forEach(t=>{
+    autoGrow(t);
+    t.addEventListener('input',()=>{reflVals[+t.dataset.r]=t.value;autoGrow(t);save();});
+  });
 
   var _cn=document.getElementById('ctaNaam'); if(_cn && !_cn.value) _cn.value=naam;
   var _sm=document.getElementById('sendMsg'); if(_sm){_sm.textContent='';_sm.className='cta-msg';}
   var _sb=document.getElementById('sendBtn'); if(_sb){_sb.disabled=false;_sb.textContent='Verstuur mijn resultaten naar ZinSane';}
   drawWheel();
 }
+function autoGrow(t){t.style.height='auto';t.style.height=Math.max(54,t.scrollHeight)+'px';}
 function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
 /* ---- wheel (SVG, 5 wedges, radius = score/10) ---- */
@@ -689,6 +690,8 @@ function showReport(){
   document.getElementById('form').style.display='none';
   document.querySelector('.topbar').style.display='none';
   document.getElementById('report').style.display='block';
+  // re-grow reflection fields now that the report is visible (scrollHeight is reliable)
+  document.querySelectorAll('#reflectOut .ra-input').forEach(autoGrow);
   window.scrollTo(0,0);
 }
 function backToForm(){
@@ -700,7 +703,25 @@ function backToForm(){
 document.getElementById('goReport').onclick=showReport;
 document.getElementById('goReport2').onclick=showReport;
 document.getElementById('backBtn').onclick=backToForm;
-document.getElementById('printBtn').onclick=()=>window.print();
+document.getElementById('printBtn').onclick=doPrint;
+
+function doPrint(){
+  // make sure reflection text ends up in the printed markup and fields keep their grown height
+  document.querySelectorAll('#reflectOut .ra-input').forEach(t=>{autoGrow(t);t.textContent=t.value;});
+  const embedded = (window.self!==window.top);
+  if(!embedded){ window.print(); return; }   // normal page (e.g. hosted on your site)
+  // embedded in an iframe (e.g. claude.ai preview): open a standalone print window
+  const doc='<!doctype html><html lang="nl"><head><meta charset="utf-8">'
+    +'<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">'
+    +document.querySelector('style').outerHTML
+    +'<style>body{background:#fff;margin:0}#report{display:block!important}.no-print{display:none!important}.rep-wrap{padding:44px;max-width:820px;margin:0 auto}@media print{.rep-wrap{padding:6mm 4mm}}</style>'
+    +'</head><body>'+document.getElementById('report').innerHTML
+    +'<scr'+'ipt>window.onload=function(){setTimeout(function(){window.print();},500);};</scr'+'ipt>'
+    +'</body></html>';
+  const w=window.open('','_blank');
+  if(!w){ alert('Sta pop-ups toe om af te drukken — of open deze pagina in een eigen browsertabblad en gebruik de knop daar.'); return; }
+  w.document.open(); w.document.write(doc); w.document.close();
+}
 
 /* ---- resultaten naar ZinSane sturen (FormSubmit, zelfde als het contactformulier) ---- */
 function buildSummaryText(){
@@ -715,7 +736,7 @@ function buildSummaryText(){
   var avg=sc.length?(sc.reduce(function(a,s){return a+s.score10;},0)/sc.length):0;
   L.push('');
   L.push('Gemiddelde vitaliteit: '+(sc.length?avg.toFixed(1)+'/10':'—'));
-  var refl=Array.prototype.slice.call(document.querySelectorAll('.rf textarea')).map(function(t){return t.value.trim();});
+  var refl=(typeof reflVals!=='undefined')?reflVals.map(function(x){return (x||'').trim();}):[];
   if(refl.some(function(r){return r;})){
     L.push(''); L.push('Reflectie & actie:');
     REFLECT_Q.forEach(function(q,i){ if(refl[i]){ L.push('- '+q); L.push('  '+refl[i]); } });
