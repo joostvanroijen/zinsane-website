@@ -104,6 +104,17 @@
   .golden{margin-top:14px;padding:18px 20px;background:var(--cream);border-radius:10px}
   .golden .rules{margin:8px 0 0;padding:0;list-style:none;font-size:12.5px;color:var(--brown-light);line-height:1.5}
   .golden .rules li{padding:3px 0 3px 22px;position:relative}
+  .cta{margin-top:26px;padding:22px;background:var(--cream);border-radius:12px;border:1px solid var(--cream-dk)}
+  .cta-intro{font-size:13px;color:var(--brown-light);margin:0 0 14px}
+  .cta-fields{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .cta-fields input{flex:1;min-width:180px;font-family:var(--sans);font-size:14px;color:var(--brown);border:1px solid var(--cream-dk);border-radius:9px;padding:10px 12px;background:var(--white);outline:none}
+  .cta-fields input:focus{border-color:var(--terracotta)}
+  .cta-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .btn.ghost-dk{background:transparent;border:1px solid var(--terracotta);color:var(--terracotta);text-decoration:none;display:inline-flex;align-items:center}
+  .btn.ghost-dk:hover{background:var(--terracotta);color:#fff}
+  .cta-msg{font-size:13px;margin:12px 0 0}
+  .cta-msg.ok{color:#5a7d4f}
+  .cta-msg.err{color:#b4524a}
   .golden .rules li:before{content:"◆";position:absolute;left:0;color:var(--terracotta);font-size:10px;top:5px}
 
   @media print{
@@ -450,6 +461,20 @@
         <li>Weet wat je levensdoel is en ga voor werk waar je ertoe doet</li>
       </ul>
     </div>
+
+    <div class="cta no-print">
+      <div class="eyebrow" style="margin-bottom:6px">Ontvang je resultaten &amp; plan een gesprek</div>
+      <p class="cta-intro">Laat je naam en e-mailadres achter. We sturen je resultaten naar ZinSane en nemen contact met je op.</p>
+      <div class="cta-fields">
+        <input id="ctaNaam" type="text" placeholder="Naam">
+        <input id="ctaEmail" type="email" placeholder="E-mailadres">
+      </div>
+      <div class="cta-actions">
+        <button class="btn" id="sendBtn" type="button">Verstuur mijn resultaten naar ZinSane</button>
+        <a class="btn ghost-dk" href="https://calendar.app.google/ApnqxFo6CNM94zaE9" target="_blank" rel="noopener">Plan een gesprek via Google Meet &rsaquo;</a>
+      </div>
+      <p class="cta-msg" id="sendMsg"></p>
+    </div>
   </div>
 </div>
 
@@ -598,6 +623,9 @@ function buildReport(){
     return `<div class="blk"><div class="rq">${q}</div><div class="ra${a?'':' empty'}">${a?escapeHtml(a):''}</div></div>`;
   }).join('');
 
+  var _cn=document.getElementById('ctaNaam'); if(_cn && !_cn.value) _cn.value=naam;
+  var _sm=document.getElementById('sendMsg'); if(_sm){_sm.textContent='';_sm.className='cta-msg';}
+  var _sb=document.getElementById('sendBtn'); if(_sb){_sb.disabled=false;_sb.textContent='Verstuur mijn resultaten naar ZinSane';}
   drawWheel();
 }
 function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
@@ -670,6 +698,62 @@ document.getElementById('goReport').onclick=showReport;
 document.getElementById('goReport2').onclick=showReport;
 document.getElementById('backBtn').onclick=backToForm;
 document.getElementById('printBtn').onclick=()=>window.print();
+
+/* ---- resultaten naar ZinSane sturen (FormSubmit, zelfde als het contactformulier) ---- */
+function buildSummaryText(){
+  var L=[];
+  L.push('VitaView vitaliteitsscan — resultaten');
+  L.push('Datum: '+(val('datum')||todayNL()));
+  L.push('');
+  var scored=[];
+  DIMS.forEach(function(dim,di){var s=dimScore(di);scored.push(s);
+    L.push(dim.lab+': '+(s.n?s.score10.toFixed(1)+'/10':'—')+((s.n>0&&s.n<10)?(' ('+s.n+'/10 stellingen)'):''));});
+  var sc=scored.filter(function(s){return s.n;});
+  var avg=sc.length?(sc.reduce(function(a,s){return a+s.score10;},0)/sc.length):0;
+  L.push('');
+  L.push('Gemiddelde vitaliteit: '+(sc.length?avg.toFixed(1)+'/10':'—'));
+  var refl=Array.prototype.slice.call(document.querySelectorAll('.rf textarea')).map(function(t){return t.value.trim();});
+  if(refl.some(function(r){return r;})){
+    L.push(''); L.push('Reflectie & actie:');
+    REFLECT_Q.forEach(function(q,i){ if(refl[i]){ L.push('- '+q); L.push('  '+refl[i]); } });
+  }
+  L.push('');
+  L.push('Ingevuld: '+countAnswered()+'/50 stellingen.');
+  return L.join('\n');
+}
+function setMsg(t,ok){var m=document.getElementById('sendMsg');if(!m)return;m.textContent=t;m.className='cta-msg '+(ok?'ok':'err');}
+async function sendResults(){
+  var naam=((document.getElementById('ctaNaam')||{}).value||'').trim();
+  var email=((document.getElementById('ctaEmail')||{}).value||'').trim();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){setMsg('Vul een geldig e-mailadres in zodat we contact met je kunnen opnemen.',false);return;}
+  var btn=document.getElementById('sendBtn');var orig=btn.textContent;btn.disabled=true;btn.textContent='Versturen…';
+  try{
+    var res=await fetch('https://formsubmit.co/ajax/sabine@zinsane.nl',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        _subject:'Nieuwe VitaView vitaliteitsscan via ZinSane.nl',
+        _template:'table',
+        Naam:naam||'(niet ingevuld)',
+        Email:email,
+        Datum:val('datum')||todayNL(),
+        Resultaten:buildSummaryText()
+      })
+    });
+    var data={};try{data=await res.json();}catch(e){}
+    if(res.ok && (data.success===undefined||String(data.success)==='true')){
+      setMsg('Bedankt! Je resultaten zijn naar ZinSane verstuurd. We nemen snel contact met je op.',true);
+      btn.textContent='Verstuurd ✓';
+    }else{
+      setMsg((data.message?data.message+' ':'')+'Lukt het niet? Mail je resultaten naar sabine@zinsane.nl.',false);
+      btn.disabled=false;btn.textContent=orig;
+    }
+  }catch(e){
+    setMsg('Versturen lukte niet. Controleer je verbinding of mail naar sabine@zinsane.nl.',false);
+    btn.disabled=false;btn.textContent=orig;
+  }
+}
+var _sendBtn=document.getElementById('sendBtn');if(_sendBtn)_sendBtn.addEventListener('click',sendResults);
 
 load();updateProgress();
 </script>
