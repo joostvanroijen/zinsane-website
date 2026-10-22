@@ -165,6 +165,10 @@ section { padding: 120px 60px; }
 .filosofie { background: var(--white); }
 .filosofie-inner { max-width: 750px; margin: 0 auto; }
 .filosofie-inner p { color: var(--brown-light); margin-bottom: 22px; font-size: 1.05rem; }
+.filosofie-list { list-style: none; margin: 4px 0 26px; }
+.filosofie-list li { padding: 8px 0; color: var(--brown-light); font-size: 1.05rem; display: flex; align-items: flex-start; gap: 12px; }
+.filosofie-list li::before { content: '—'; color: var(--terracotta); flex-shrink: 0; }
+.filosofie-close { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: var(--brown); }
 .pull-quote {
   font-family: 'Playfair Display', serif;
   font-size: 2rem; font-style: italic; color: var(--brown); line-height: 1.5;
@@ -757,18 +761,19 @@ footer {
 <!-- ========================== FILOSOFIE ========================== -->
 <section class="filosofie" id="filosofie">
   <div class="filosofie-inner fade-in">
-    <p class="section-label">Filosofie</p>
-    <h2 class="section-title">Meten is weten</h2>
-    <p class="longevity-quote">"Longevity betekent niet alleen meer jaren aan je leven toevoegen, maar meer leven aan je jaren."</p>
-    <p><em>Longevity = langdurige vitaliteit. Bij ZinSane werken we aan gezondheid op celniveau, zodat je lichaam optimaal kan functioneren – vandaag, morgen en over twintig jaar.</em></p>
-    <p>Binnen ZinSane gaat longevity over het optimaliseren van je lichaam van binnenuit, zodat je langer vitaal, energiek en mentaal scherp blijft – gebaseerd op wetenschap, metingen en persoonlijke inzichten.</p>
-    <p>Longevity is de kunst van duurzaam leven. Niet gedreven door snelle oplossingen of hypes, maar door inzicht in wat jouw lichaam werkelijk nodig heeft.</p>
-    <p>Bij ZinSane geloven we dat echte vitaliteit begint bij meten, begrijpen en gericht verbeteren. Door middel van test-based nutrition en bewuste leefstijlkeuzes ondersteunen we het lichaam op celniveau – zodat gezondheid niet alleen vandaag voelbaar is, maar ook op lange termijn behouden blijft.</p>    <p>Veel mensen slikken supplementen "voor de zekerheid". Maar zonder inzicht weet je eigenlijk niet of ze iets bijdragen.</p>
-    <p>Met een eenvoudige bloedtest wordt onder andere de omega-6/omega-3 balans in je lichaam bepaald. Deze balans speelt een cruciale rol bij celgezondheid, energie, focus en herstel.</p>
-    <p>Op basis van jouw persoonlijke testresultaten ontstaat een helder beeld van wat jouw lichaam nodig heeft. Pas daarna volgt een advies over voeding, leefstijl en gerichte supplementen.</p>
-    <p>ZinSane combineert deze test-based aanpak met persoonlijke vitaliteitscoaching, omdat duurzame gezondheid nooit uit één element bestaat. Voeding, beweging, herstel en mentale balans versterken elkaar.</p>
+    <p class="section-label">Herken je dit?</p>
+    <h2 class="section-title">Je doet alles &ldquo;goed&rdquo;, en toch&hellip;</h2>
+    <p>Je eet gezond. Je beweegt. Je weet meer over gezondheid dan de meeste mensen om je heen.</p>
+    <p>En toch:</p>
+    <ul class="filosofie-list">
+      <li>ben je aan het einde van de dag leeg;</li>
+      <li>slaap je onrustiger dan vroeger;</li>
+      <li>duurt herstel langer, na een drukke week of een training;</li>
+      <li>herken je jezelf soms even niet in de spiegel;</li>
+      <li>en ook je hoofd kan soms mistig zijn.</li>
+    </ul>
+    <p class="filosofie-close">Je bent niet de enige. En het hoeft niet zo te blijven.</p>
   </div>
-  <p class="pull-quote fade-in">Een gezond lichaam is het fundament onder alles wat je wilt bereiken.</p>
 </section>
 
 <!-- ========================== AANPAK ========================== -->
