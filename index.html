@@ -434,6 +434,17 @@ section { padding: 120px 60px; }
 }
 .partner-inner ul li { padding: 10px 0; color: var(--brown-light); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 10px; }
 .partner-inner ul li::before { content: '—'; color: var(--olive); flex-shrink: 0; }
+.club-benefits { list-style: none; max-width: 460px; margin: 16px auto 28px; }
+.club-benefits li {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 13px 0; border-bottom: 1px solid var(--cream-dark);
+  color: var(--brown-light); font-size: 0.98rem; line-height: 1.5;
+}
+.club-benefits li:last-child { border-bottom: none; }
+.club-benefits li::before {
+  content: ''; flex-shrink: 0; margin-top: 7px;
+  width: 7px; height: 7px; border-radius: 50%; background: var(--terracotta);
+}
 
 /* ===================== FAQ ===================== */
 .faq { background: var(--cream); border-radius: 40px; margin: 0 30px; padding: 120px 60px; }
@@ -1096,10 +1107,12 @@ footer {
       <p>Ik geloof dat de mooiste dingen in het leven samen gebeuren.</p>
       <p>Club ZinSane is de plek waar mensen samenkomen die net als jij hebben ontdekt dat echte vitaliteit begint bij inzicht in jezelf. Mensen die niet wachten tot er iets mis gaat, maar bewust bouwen aan hun gezondheid — vandaag, morgen en over twintig jaar.</p>
       <p>Als lid van Club ZinSane omring je jezelf met een community van gelijkgestemden. We delen kennis, ervaringen en resultaten. We leren van elkaar. En we groeien samen.</p>
-      <p style="text-align:center;">Persoonlijke begeleiding van mij, Sabine</p>
-      <p style="text-align:center;">Exclusieve content, inzichten en updates</p>
-      <p style="text-align:center;">Live events en inspirerende kennissessies</p>
-      <p style="text-align:center;">Een warme, gedreven community die jou begrijpt</p>
+      <ul class="club-benefits">
+        <li>Persoonlijke begeleiding van mij, Sabine</li>
+        <li>Exclusieve content, inzichten en updates</li>
+        <li>Live events en inspirerende kennissessies</li>
+        <li>Een warme, gedreven community die jou begrijpt</li>
+      </ul>
       <p><em>Klaar om onderdeel te worden van iets groters dan jezelf?</em></p>
       <a href="https://chat.whatsapp.com/K1hsuzGtID4KS1yrB0oJEp" target="_blank" class="btn-primary" style="margin-top:20px;display:inline-block;">Word gratis lid</a>
     </div>
