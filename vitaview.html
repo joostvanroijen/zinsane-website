@@ -446,7 +446,7 @@
     </div>
 
     <div class="eyebrow">Reflectie &amp; actie</div>
-    <p class="reflect-hint no-print">Vul hieronder je reflectie in — op basis van je wiel hierboven. Wat je typt verschijnt in de afdruk/PDF; lege velden blijven ruimte om met de hand in te vullen.</p>
+    <p class="reflect-hint no-print">Vul hieronder je reflectie in, op basis van je wiel hierboven. Wat je typt verschijnt in de afdruk/PDF; lege velden blijven ruimte om met de hand in te vullen.</p>
     <div class="reflect" id="reflectOut"></div>
 
     <div class="golden">
@@ -454,7 +454,7 @@
       <ul class="rules">
         <li>Wees zelfbewust, houd de zaag scherp en blijf je ontwikkelen</li>
         <li>Beweeg voldoende, eet gezond en neem voldoende rust</li>
-        <li>Alles wat je aandacht geeft groeit — richt je op het positieve</li>
+        <li>Alles wat je aandacht geeft groeit, dus richt je op het positieve</li>
         <li>Zoek een (werk)omgeving die bij jouw mentale en fysieke gestel past</li>
         <li>Weet wat je levensdoel is en ga voor werk waar je ertoe doet</li>
       </ul>
@@ -720,7 +720,7 @@ function doPrint(){
     +'<scr'+'ipt>window.onload=function(){setTimeout(function(){window.print();},500);};</scr'+'ipt>'
     +'</body></html>';
   const w=window.open('','_blank');
-  if(!w){ alert('Sta pop-ups toe om af te drukken — of open deze pagina in een eigen browsertabblad en gebruik de knop daar.'); return; }
+  if(!w){ alert('Sta pop-ups toe om af te drukken, of open deze pagina in een eigen browsertabblad en gebruik de knop daar.'); return; }
   w.document.open(); w.document.write(doc); w.document.close();
 }
 
