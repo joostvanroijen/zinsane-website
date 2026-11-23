@@ -205,7 +205,7 @@ section { padding: 120px 60px; }
 
 /* ===================== AANBOD ===================== */
 .aanbod { background: var(--cream); border-radius: 40px; margin: 0 30px; padding: 120px 60px; }
-.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
+.cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 60px; max-width: 760px; margin-left: auto; margin-right: auto; }
 
 /* Featured card wrapper for badge */
 .card-wrapper { position: relative; }
@@ -787,7 +787,7 @@ footer {
 
 <!-- ========================== OVER SABINE ========================== -->
 <section class="over" id="sabine">
-  <div class="over-grid trio">
+  <div class="over-grid">
     <div class="over-image fade-in">
       <img src="Sabine v Roijen_webversie-4.jpg" alt="Sabine van Roijen — Vitaliteitscoach" loading="lazy">
     </div>
@@ -799,9 +799,6 @@ footer {
       <p>Mijn zoektocht naar een optimale gezondheid begon echter al vijftien jaar eerder, tijdens een detoxkuur in Turkije. Ik leerde veel over voeding, beweging, een gezonde lifestyle en voelde me energieker worden, maar bleef zoeken naar dat laatste stukje. Een eenvoudige bloedtest liet me zien wat ik miste. Sindsdien weet ik: luisteren naar je lichaam begint met begrijpen wat het nodig heeft.</p>
       <p>Al meer dan twintig jaar begeleid ik mensen als coach. Inmiddels ben ik 60 en vitaler dan ooit. Met ZinSane help ik vrouwen van 50+ om zich weer krachtig, stralend en helemaal zichzelf te voelen.</p>
       <p class="over-signature">Sabine van Roijen, gecertificeerd life- en vitaliteitscoach</p>
-    </div>
-    <div class="over-image fade-in">
-      <img src="sabine-fit.jpg" alt="Sabine van Roijen — krachttraining" loading="lazy" style="object-position: center 20%;">
     </div>
   </div>
 </section>
@@ -949,22 +946,6 @@ footer {
   </div>
   <div class="cards">
 
-    <!-- Basic -->
-    <div class="card-wrapper">
-      <div class="card fade-in">
-        <p class="card-name">ZinSane Basic</p>
-        <p class="card-tagline">Een eerste stap</p>
-        <p class="card-desc">Voor wie wil ontdekken waar ze staat. Je krijgt een online intake en twee Balance-tests, zodat je je eigen verandering kunt volgen.</p>
-        <ul>
-          <li>Online intake</li>
-          <li>2&times; Balance test (incl. analysebespreking)</li>
-          <li>Balance Oil voor de eerste 2 maanden</li>
-        </ul>
-        <p class="card-price">Investering: &euro;209</p>
-        <a href="#contact" class="btn-card">Ja, ik wil dit!</a>
-      </div>
-    </div>
-
     <!-- ZinSane 120 (featured) -->
     <div class="card-wrapper">
       <div class="meest-gekozen-badge">Meest gekozen</div>
@@ -978,7 +959,7 @@ footer {
           <li>2&times; Balance test (incl. analysebespreking)</li>
           <li>Twee coachingsgesprekken, volgend uit je vitaliteitsscan</li>
         </ul>
-        <p class="card-price">Investering: &euro;495 <span class="card-price-old">&euro;895</span></p>
+        <p class="card-price">Investering: &euro;895</p>
         <a href="#contact" class="btn-card">Start jouw route</a>
       </div>
     </div>
@@ -997,7 +978,7 @@ footer {
           <li>6 diepgaande coachingssessies</li>
           <li>Persoonlijke support tijdens gehele traject</li>
         </ul>
-        <p class="card-price">Investering: &euro;1995 <span class="card-price-old">&euro;2795</span></p>
+        <p class="card-price">Investering: &euro;1995</p>
         <a href="#contact" class="btn-card">Start jouw traject</a>
       </div>
     </div>
@@ -1335,7 +1316,6 @@ footer {
         <label for="interesse">Ik ben geïnteresseerd in</label>
         <select id="interesse" name="interesse">
           <option value="" disabled selected>Maak een keuze</option>
-          <option value="ZinSane Basic">ZinSane Basic</option>
           <option value="ZinSane 120">ZinSane 120&trade;</option>
           <option value="ZinSane Premium">ZinSane Premium</option>
           <option value="Supplementen">Supplementen</option>
