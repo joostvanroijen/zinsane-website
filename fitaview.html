@@ -3,18 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VitaView — Vitaliteitsscan · ZinSane</title>
-<meta name="description" content="VitaView — de ZinSane vitaliteitsscan: 50 stellingen over 5 dimensies, met je persoonlijke vitaliteitswiel.">
+<title>FITAVIEW – Vitaliteitsscan voor vrouwen van 50+</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Allura&display=swap" rel="stylesheet">
 <style>
   :root{
-    --brown:#2C2419; --brown-light:#5C4A35; --terracotta:#C4795B; --terracotta-dk:#A8623F;
-    --cream:#F5F0EB; --cream-dk:#E8E0D8; --white:#FDFBF9; --muted:#9A8C7D; --empty:#E3DDD4;
-    --d1:#6B7B5E; --d2:#C4795B; --d3:#B5776A; --d4:#8A9E7A; --d5:#7B6B5A;
-    --serif:'Playfair Display',Georgia,'Times New Roman',serif;
-    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+    /* ZinSane mini-huisstijlgids v1 (okt 2026): aubergine/abrikoos/linnen */
+    --brown:#4B2742; --brown-light:#7A5A70; --terracotta:#C2714A; --terracotta-dk:#A85C3A;
+    --apricot:#E7A473; --blush:#EBCFC4;
+    --cream:#F5EEE6; --cream-dk:#E6D8C8; --white:#FFFDFB; --muted:#9A86A0; --empty:#E8DCD0;
+    --d1:#4B2742; --d2:#C2714A; --d3:#7A5A70; --d4:#7E9068; --d5:#C98A54;
+    --serif:'Jost',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+    --sans:'Jost',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+    --script:'Allura',cursive;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
@@ -34,7 +36,7 @@
 
   /* ---------- form ---------- */
   .doc-head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--terracotta);padding-bottom:14px;margin-bottom:10px;gap:20px;flex-wrap:wrap}
-  .doc-title{font-family:var(--serif);font-size:38px;font-weight:700;letter-spacing:.06em;color:var(--terracotta);line-height:1}
+  .doc-title{font-family:var(--serif);font-size:40px;font-weight:300;text-transform:uppercase;letter-spacing:.16em;color:var(--brown);line-height:1}
   .doc-title sup{font-size:.4em;vertical-align:super}
   .doc-sub{font-size:13px;color:var(--muted);margin-top:6px}
   .doc-meta{font-size:12px;color:var(--muted);text-align:right}
@@ -80,8 +82,8 @@
   #report{display:none}
   .rep-wrap{max-width:760px;margin:0 auto;padding:44px 44px 60px;background:#fff}
   .rep-head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--terracotta);padding-bottom:11px;margin-bottom:30px;gap:20px}
-  .rep-head .t{font-family:var(--serif);font-size:27px;font-weight:700;letter-spacing:.02em;color:var(--brown)}
-  .rep-head .t sup{font-size:.42em;vertical-align:super}
+  .rep-head .t{font-family:var(--script);font-size:46px;font-weight:400;letter-spacing:.01em;color:var(--brown);line-height:1}
+  .rep-head .t sup{font-size:.28em;vertical-align:super;font-family:var(--sans)}
   .rep-head .by{font-size:12px;color:var(--muted);margin-top:4px}
   .rep-head .when{font-size:12px;color:var(--muted);text-align:right}
   .rep-top{display:flex;gap:36px;align-items:flex-start;margin-bottom:34px;flex-wrap:wrap}
@@ -105,6 +107,7 @@
   .golden{margin-top:14px;padding:18px 20px;background:var(--cream);border-radius:10px}
   .golden .rules{margin:8px 0 0;padding:0;list-style:none;font-size:12.5px;color:var(--brown-light);line-height:1.5}
   .golden .rules li{padding:3px 0 3px 22px;position:relative}
+  .golden .rules li:before{content:"◆";position:absolute;left:0;color:var(--terracotta);font-size:10px;top:5px}
   .cta{margin-top:22px;padding:22px;background:var(--cream);border-radius:12px;border:1px solid var(--cream-dk)}
   .cta-intro{font-size:13px;color:var(--brown-light);margin:0 0 14px}
   .cta-fields{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
@@ -118,7 +121,6 @@
   .cta-msg.err{color:#b4524a}
   .cta-privacy{font-size:11.5px;color:var(--muted);line-height:1.5;margin:12px 0 0}
   .cta-privacy a{color:var(--terracotta);text-decoration:underline}
-  .golden .rules li:before{content:"◆";position:absolute;left:0;color:var(--terracotta);font-size:10px;top:5px}
   .rep-cta{margin:24px 0 0;padding-top:18px;border-top:2px solid var(--terracotta);font-size:14px;line-height:1.6;color:var(--brown)}
 
   @media print{
@@ -141,8 +143,8 @@
 <body>
 
 <div class="topbar">
-  <span class="brand">VITAVIEW<sup>®</sup></span>
-  <span style="opacity:.6">Vitaliteitsscan · ZinSane</span>
+  <span class="brand">FITAVIEW<sup>®</sup></span>
+  <span style="opacity:.6">Vitaliteitsscan voor vrouwen van 50+ · ZinSane</span>
   <span class="spacer"></span>
   <a class="btn ghost" href="index.html" style="text-decoration:none">&lsaquo; ZinSane</a>
   <button class="btn" id="goReport">Genereer rapport ›</button>
@@ -152,8 +154,8 @@
 <div class="wrap" id="form">
   <div class="doc-head">
     <div>
-      <div class="doc-title">VITAVIEW<sup>®</sup></div>
-      <div class="doc-sub">Vitaliteitsscan · 50 stellingen over 5 dimensies</div>
+      <div class="doc-title">FITAVIEW<sup>®</sup></div>
+      <div class="doc-sub">Vitaliteitsscan voor vrouwen van 50+</div>
       <div class="doc-sub" style="margin-top:2px;font-style:italic">Geïnspireerd op de Vitascan van Vitalogisch®</div>
     </div>
     <div class="doc-meta">by ZinSane</div>
@@ -168,21 +170,21 @@
 
   <div id="dims">
     <div class="dim">
-      <div class="dim-head" style="background:#6B7B5E">
+      <div class="dim-head" style="background:#4B2742">
         <span class="lab">Dimensie 1</span>
         <span class="nm">Vitalogisch</span>
         <span class="dsub">— Bewustwording &amp; motivatie</span>
       </div>
       <div class="q" data-di="0" data-qi="0">
-        <div class="qn">1</div><div class="qt">Ik kan uitleggen wat vitaliteit voor mij betekent</div>
+        <div class="qn">1</div><div class="qt">Ik begrijp hoe mijn vitaliteit verandert in deze levensfase</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="0" data-qi="1">
-        <div class="qn">2</div><div class="qt">Ik kan uitleggen hoe ik mijn vitaliteit kan verbeteren</div>
+        <div class="qn">2</div><div class="qt">Ik weet wat ik zelf kan doen om me energieker te voelen, ook nu mijn lichaam verandert</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="0" data-qi="2">
-        <div class="qn">3</div><div class="qt">Ik onderneem actief stappen om mezelf energieker te voelen</div>
+        <div class="qn">3</div><div class="qt">Ik vind het de moeite waard om in mezelf te investeren, niet alleen in anderen</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="0" data-qi="3">
@@ -190,215 +192,215 @@
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="0" data-qi="4">
-        <div class="qn">5</div><div class="qt">Ik vind het belangrijk om te investeren in mijn eigen vitaliteit</div>
+        <div class="qn">5</div><div class="qt">Ik voel de motivatie om goed voor mezelf te zorgen in de tweede helft van mijn leven</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="0" data-qi="5">
-        <div class="qn">6</div><div class="qt">Ik zie het nut in van het aanpassen van mijn gedrag voor meer energie</div>
+        <div class="qn">6</div><div class="qt">Ik geloof dat ik mijn vitaliteit ook op deze leeftijd nog echt kan verbeteren</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="0" data-qi="6">
-        <div class="qn">7</div><div class="qt">Ik weet wat ik nodig heb om vitaal te blijven in de komende jaren</div>
+        <div class="qn">7</div><div class="qt">Ik weet wat ik nodig heb om de komende jaren vitaal en sterk te blijven</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="0" data-qi="7">
-        <div class="qn">8</div><div class="qt">Ik geloof dat kleine veranderingen in mijn leefstijl groot verschil maken</div>
+        <div class="qn">8</div><div class="qt">Ik geloof dat kleine aanpassingen in mijn leefstijl een groot verschil maken</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="0" data-qi="8">
-        <div class="qn">9</div><div class="qt">Ik neem regelmatig de tijd om te reflecteren op mijn eigen vitaliteit</div>
+        <div class="qn">9</div><div class="qt">Ik neem regelmatig de tijd om stil te staan bij hoe het écht met me gaat</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="0" data-qi="9">
-        <div class="qn">10</div><div class="qt">Ik weet welke keuzes ik kan maken om mijn energiebalans te verbeteren</div>
+        <div class="qn">10</div><div class="qt">Ik durf mijn eigen behoeften voorop te stellen zonder me schuldig te voelen</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
     </div>
     <div class="dim">
-      <div class="dim-head" style="background:#C4795B">
+      <div class="dim-head" style="background:#C2714A">
         <span class="lab">Dimensie 2</span>
         <span class="nm">Fysiologisch</span>
         <span class="dsub">— Lichaam &amp; leefstijl</span>
       </div>
       <div class="q" data-di="1" data-qi="0">
-        <div class="qn">11</div><div class="qt">Ik pas gezonde voeding toe in mijn dagelijkse leven</div>
+        <div class="qn">11</div><div class="qt">Ik eet voeding die past bij wat mijn lichaam in deze fase nodig heeft</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="1" data-qi="1">
-        <div class="qn">12</div><div class="qt">Ik beweeg minimaal 2 à 3 keer per week ongeveer 30 tot 60 minuten</div>
+        <div class="qn">12</div><div class="qt">Ik beweeg genoeg om mijn spieren en botten sterk te houden</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="1" data-qi="2">
-        <div class="qn">13</div><div class="qt">Ik slaap voldoende en word uitgerust wakker</div>
+        <div class="qn">13</div><div class="qt">Ik slaap goed door en word uitgerust wakker</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="1" data-qi="3">
-        <div class="qn">14</div><div class="qt">Ik neem voldoende ontspanning gedurende de dag en in de week</div>
+        <div class="qn">14</div><div class="qt">Ik neem voldoende rust en ontspanning gedurende mijn week</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="1" data-qi="4">
-        <div class="qn">15</div><div class="qt">Ik herken lichamelijke klachten bij mezelf en onderneem actie</div>
+        <div class="qn">15</div><div class="qt">Ik herken signalen van mijn lichaam, zoals opvliegers, vermoeidheid of pijn, en doe er iets mee</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="1" data-qi="5">
-        <div class="qn">16</div><div class="qt">Ik let bewust op mijn houding en ergonomie tijdens mijn werk</div>
+        <div class="qn">16</div><div class="qt">Ik voel me prettig en op mijn gemak in mijn lichaam zoals het nu is</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="1" data-qi="6">
-        <div class="qn">17</div><div class="qt">Ik drink voldoende water gedurende de dag</div>
+        <div class="qn">17</div><div class="qt">Ik drink voldoende water en let bewust op wat ik binnenkrijg</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="1" data-qi="7">
-        <div class="qn">18</div><div class="qt">Ik beperk alcohol, suiker en andere ongezonde gewoontes</div>
+        <div class="qn">18</div><div class="qt">Ik ga bewust om met alcohol, suiker en cafeïne</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="1" data-qi="8">
-        <div class="qn">19</div><div class="qt">Ik plan actief ruimte in voor herstel na inspanning of drukke periodes</div>
+        <div class="qn">19</div><div class="qt">Ik gun mezelf voldoende hersteltijd na drukke of inspannende periodes</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="1" data-qi="9">
-        <div class="qn">20</div><div class="qt">Ik neem regelmatig korte pauzes tijdens mijn werkdag</div>
+        <div class="qn">20</div><div class="qt">Ik ervaar een goede energiebalans over de dag</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
     </div>
     <div class="dim">
-      <div class="dim-head" style="background:#B5776A">
+      <div class="dim-head" style="background:#7A5A70">
         <span class="lab">Dimensie 3</span>
         <span class="nm">Psychologisch</span>
         <span class="dsub">— Mindset &amp; zelfbewustzijn</span>
       </div>
       <div class="q" data-di="2" data-qi="0">
-        <div class="qn">21</div><div class="qt">Ik weet hoe mijn overtuigingen mijn gedrag beïnvloeden</div>
+        <div class="qn">21</div><div class="qt">Ik begrijp hoe mijn gedachten en overtuigingen mijn gevoel beïnvloeden</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="2" data-qi="1">
-        <div class="qn">22</div><div class="qt">Ik kan omgaan met negatieve emoties op een gezonde manier</div>
+        <div class="qn">22</div><div class="qt">Ik kan op een gezonde manier omgaan met wisselende stemmingen en emoties</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="2" data-qi="2">
-        <div class="qn">23</div><div class="qt">Ik weet waarom ik mezelf waardeer</div>
+        <div class="qn">23</div><div class="qt">Ik waardeer mezelf, los van mijn uiterlijk of mijn leeftijd</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="2" data-qi="3">
-        <div class="qn">24</div><div class="qt">Ik weet hoe ik goed om kan gaan met tegenslagen</div>
+        <div class="qn">24</div><div class="qt">Ik weet hoe ik veerkrachtig omga met tegenslagen</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="2" data-qi="4">
-        <div class="qn">25</div><div class="qt">Ik geloof dat ik kan groeien in wat ik tegenkom in het leven</div>
+        <div class="qn">25</div><div class="qt">Ik geloof dat ik kan blijven groeien, ook na mijn vijftigste</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="2" data-qi="5">
-        <div class="qn">26</div><div class="qt">Ik herken wanneer mijn gedachten mij belemmeren en kan dit doorbreken</div>
+        <div class="qn">26</div><div class="qt">Ik herken wanneer ik te streng of te veeleisend voor mezelf ben en kan dat loslaten</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="2" data-qi="6">
-        <div class="qn">27</div><div class="qt">Ik ben in staat om vanuit een positieve grondhouding te leven en te werken</div>
+        <div class="qn">27</div><div class="qt">Ik leef en werk vanuit vertrouwen in plaats van vanuit zorgen</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="2" data-qi="7">
-        <div class="qn">28</div><div class="qt">Ik heb een goed beeld van mijn eigen sterke en zwakke kanten</div>
+        <div class="qn">28</div><div class="qt">Ik heb een helder beeld van mijn sterke kanten en wat mij waardevol maakt</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="2" data-qi="8">
-        <div class="qn">29</div><div class="qt">Ik maak bewust keuzes in plaats van op de automatische piloot te handelen</div>
+        <div class="qn">29</div><div class="qt">Ik maak bewuste keuzes in plaats van te doen wat anderen van me verwachten</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="2" data-qi="9">
-        <div class="qn">30</div><div class="qt">Ik kan loskomen van piekeren en mijn hoofd leegmaken als dat nodig is</div>
+        <div class="qn">30</div><div class="qt">Ik kan mijn hoofd leegmaken en loskomen van piekeren</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
     </div>
     <div class="dim">
-      <div class="dim-head" style="background:#8A9E7A">
+      <div class="dim-head" style="background:#7E9068">
         <span class="lab">Dimensie 4</span>
         <span class="nm">Ecologisch</span>
         <span class="dsub">— Omgeving &amp; sociale context</span>
       </div>
       <div class="q" data-di="3" data-qi="0">
-        <div class="qn">31</div><div class="qt">Ik begeef me in een omgeving die me energie geeft, zowel werk als privé</div>
+        <div class="qn">31</div><div class="qt">Ik begeef me in een omgeving die me energie geeft, thuis en daarbuiten</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="3" data-qi="1">
-        <div class="qn">32</div><div class="qt">Ik krijg voldoende ruimte om me te ontwikkelen op mijn werk</div>
+        <div class="qn">32</div><div class="qt">Ik ervaar een goede balans tussen zorgen voor anderen en zorgen voor mezelf</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="3" data-qi="2">
-        <div class="qn">33</div><div class="qt">Ik ervaar voldoende steun en waardering van mijn leidinggevende</div>
+        <div class="qn">33</div><div class="qt">Ik voel me gezien en gewaardeerd door de mensen om me heen</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="3" data-qi="3">
-        <div class="qn">34</div><div class="qt">Ik ervaar een gezonde balans tussen werk en privé</div>
+        <div class="qn">34</div><div class="qt">Ik ervaar een gezonde balans tussen inspanning en ontspanning in mijn leven</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="3" data-qi="4">
-        <div class="qn">35</div><div class="qt">Ik heb goede werkrelaties met mijn collega's</div>
+        <div class="qn">35</div><div class="qt">Ik heb warme, ondersteunende relaties waar ik op kan bouwen</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="3" data-qi="5">
-        <div class="qn">36</div><div class="qt">Ik weet wat me energie kost in mijn omgeving en bespreek dit actief</div>
+        <div class="qn">36</div><div class="qt">Ik durf grenzen te stellen en 'nee' te zeggen als iets me te veel wordt</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="3" data-qi="6">
-        <div class="qn">37</div><div class="qt">Mijn werkomgeving ondersteunt mij in gezond en vitaal werken</div>
+        <div class="qn">37</div><div class="qt">Mijn omgeving ondersteunt me in gezond en vitaal ouder worden</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="3" data-qi="7">
-        <div class="qn">38</div><div class="qt">Ik voel me gewaardeerd en gehoord in mijn directe omgeving</div>
+        <div class="qn">38</div><div class="qt">Ik voel me gehoord in mijn relatie(s) en directe omgeving</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="3" data-qi="8">
-        <div class="qn">39</div><div class="qt">Ik omring mezelf met mensen die een positieve invloed op mij hebben</div>
+        <div class="qn">39</div><div class="qt">Ik omring me met mensen die me goeddoen en inspireren</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="3" data-qi="9">
-        <div class="qn">40</div><div class="qt">Ik kan goed omgaan met tegenslagen die vanuit mijn omgeving komen</div>
+        <div class="qn">40</div><div class="qt">Ik kan goed omgaan met veranderingen om me heen, zoals kinderen die uitvliegen of de zorg voor ouders</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
     </div>
     <div class="dim">
-      <div class="dim-head" style="background:#7B6B5A">
+      <div class="dim-head" style="background:#C98A54">
         <span class="lab">Dimensie 5</span>
         <span class="nm">Filosofisch</span>
         <span class="dsub">— Zingeving &amp; waarden</span>
       </div>
       <div class="q" data-di="4" data-qi="0">
-        <div class="qn">41</div><div class="qt">Ik vind dat mijn werk ertoe doet</div>
+        <div class="qn">41</div><div class="qt">Ik ervaar dat mijn leven zin en richting heeft</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="4" data-qi="1">
-        <div class="qn">42</div><div class="qt">Ik doe werk wat bij mijn drijfveren aansluit</div>
+        <div class="qn">42</div><div class="qt">Ik doe dingen die aansluiten bij wat ik écht belangrijk vind</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="4" data-qi="2">
-        <div class="qn">43</div><div class="qt">Ik kan mijn talenten optimaal benutten in mijn werk</div>
+        <div class="qn">43</div><div class="qt">Ik kan mijn talenten en levenservaring goed benutten</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="4" data-qi="3">
-        <div class="qn">44</div><div class="qt">Mijn normen en waarden beïnvloeden mijn vitaliteit positief</div>
+        <div class="qn">44</div><div class="qt">Mijn waarden helpen me om gezonde keuzes te maken</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="4" data-qi="4">
-        <div class="qn">45</div><div class="qt">Ik weet wat mijn persoonlijke levensdoel of missie is</div>
+        <div class="qn">45</div><div class="qt">Ik weet wat ik wil met deze fase van mijn leven</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="4" data-qi="5">
-        <div class="qn">46</div><div class="qt">Ik handel in mijn werk op een eerlijke en integere manier</div>
+        <div class="qn">46</div><div class="qt">Ik leef in lijn met wie ik werkelijk ben</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="4" data-qi="6">
-        <div class="qn">47</div><div class="qt">Ik vind voldoening in wat ik dagelijks doe</div>
+        <div class="qn">47</div><div class="qt">Ik vind voldoening in mijn dagelijks leven</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="4" data-qi="7">
-        <div class="qn">48</div><div class="qt">Ik zoek bewust een omgeving die aansluit bij mijn waarden en normen</div>
+        <div class="qn">48</div><div class="qt">Ik kies bewust voor een omgeving die bij mijn waarden past</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="4" data-qi="8">
-        <div class="qn">49</div><div class="qt">Ik weet waar ik voor sta en laat dat zien in mijn gedrag</div>
+        <div class="qn">49</div><div class="qt">Ik weet waar ik voor sta en laat dat ook zien</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
       <div class="q" data-di="4" data-qi="9">
-        <div class="qn">50</div><div class="qt">Ik ervaar dat mijn werk bijdraagt aan iets groters dan alleen mezelf</div>
+        <div class="qn">50</div><div class="qt">Ik ervaar dat ik van betekenis ben voor anderen en voor iets groters dan mezelf</div>
         <div class="scale"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button></div>
       </div>
     </div>
@@ -427,7 +429,7 @@
     <div class="rep-head">
       <div>
         <div class="t">Vitaliteitswiel<sup>®</sup></div>
-        <div class="by">VITAVIEW · by ZinSane</div>
+        <div class="by">FITAVIEW · by ZinSane</div>
         <div class="by" style="margin-top:1px;font-style:italic">Geïnspireerd op de Vitascan van Vitalogisch®</div>
       </div>
       <div class="when" id="repWhen"></div>
@@ -481,61 +483,61 @@
 
 <script>
 const DIMS=[
- {key:"Vitalogisch",lab:"Vitalogisch",sub:"Bewustwording & motivatie",color:"#6B7B5E",q:[
-  "Ik kan uitleggen wat vitaliteit voor mij betekent",
-  "Ik kan uitleggen hoe ik mijn vitaliteit kan verbeteren",
-  "Ik onderneem actief stappen om mezelf energieker te voelen",
+ {key:"Vitalogisch",lab:"Vitalogisch",sub:"Bewustwording & motivatie",color:"#4B2742",q:[
+  "Ik begrijp hoe mijn vitaliteit verandert in deze levensfase",
+  "Ik weet wat ik zelf kan doen om me energieker te voelen, ook nu mijn lichaam verandert",
+  "Ik vind het de moeite waard om in mezelf te investeren, niet alleen in anderen",
   "Ik ben me bewust van wat mij energie geeft en wat energie kost",
-  "Ik vind het belangrijk om te investeren in mijn eigen vitaliteit",
-  "Ik zie het nut in van het aanpassen van mijn gedrag voor meer energie",
-  "Ik weet wat ik nodig heb om vitaal te blijven in de komende jaren",
-  "Ik geloof dat kleine veranderingen in mijn leefstijl groot verschil maken",
-  "Ik neem regelmatig de tijd om te reflecteren op mijn eigen vitaliteit",
-  "Ik weet welke keuzes ik kan maken om mijn energiebalans te verbeteren"]},
- {key:"Fysiologisch",lab:"Fysiologisch",sub:"Lichaam & leefstijl",color:"#C4795B",q:[
-  "Ik pas gezonde voeding toe in mijn dagelijkse leven",
-  "Ik beweeg minimaal 2 à 3 keer per week ongeveer 30 tot 60 minuten",
-  "Ik slaap voldoende en word uitgerust wakker",
-  "Ik neem voldoende ontspanning gedurende de dag en in de week",
-  "Ik herken lichamelijke klachten bij mezelf en onderneem actie",
-  "Ik let bewust op mijn houding en ergonomie tijdens mijn werk",
-  "Ik drink voldoende water gedurende de dag",
-  "Ik beperk alcohol, suiker en andere ongezonde gewoontes",
-  "Ik plan actief ruimte in voor herstel na inspanning of drukke periodes",
-  "Ik neem regelmatig korte pauzes tijdens mijn werkdag"]},
- {key:"Psychologisch",lab:"Psychologisch",sub:"Mindset & zelfbewustzijn",color:"#B5776A",q:[
-  "Ik weet hoe mijn overtuigingen mijn gedrag beïnvloeden",
-  "Ik kan omgaan met negatieve emoties op een gezonde manier",
-  "Ik weet waarom ik mezelf waardeer",
-  "Ik weet hoe ik goed om kan gaan met tegenslagen",
-  "Ik geloof dat ik kan groeien in wat ik tegenkom in het leven",
-  "Ik herken wanneer mijn gedachten mij belemmeren en kan dit doorbreken",
-  "Ik ben in staat om vanuit een positieve grondhouding te leven en te werken",
-  "Ik heb een goed beeld van mijn eigen sterke en zwakke kanten",
-  "Ik maak bewust keuzes in plaats van op de automatische piloot te handelen",
-  "Ik kan loskomen van piekeren en mijn hoofd leegmaken als dat nodig is"]},
- {key:"Ecologisch",lab:"Ecologisch",sub:"Omgeving & sociale context",color:"#8A9E7A",q:[
-  "Ik begeef me in een omgeving die me energie geeft, zowel werk als privé",
-  "Ik krijg voldoende ruimte om me te ontwikkelen op mijn werk",
-  "Ik ervaar voldoende steun en waardering van mijn leidinggevende",
-  "Ik ervaar een gezonde balans tussen werk en privé",
-  "Ik heb goede werkrelaties met mijn collega's",
-  "Ik weet wat me energie kost in mijn omgeving en bespreek dit actief",
-  "Mijn werkomgeving ondersteunt mij in gezond en vitaal werken",
-  "Ik voel me gewaardeerd en gehoord in mijn directe omgeving",
-  "Ik omring mezelf met mensen die een positieve invloed op mij hebben",
-  "Ik kan goed omgaan met tegenslagen die vanuit mijn omgeving komen"]},
- {key:"Filosofisch",lab:"Filosofisch",sub:"Zingeving & waarden",color:"#7B6B5A",q:[
-  "Ik vind dat mijn werk ertoe doet",
-  "Ik doe werk wat bij mijn drijfveren aansluit",
-  "Ik kan mijn talenten optimaal benutten in mijn werk",
-  "Mijn normen en waarden beïnvloeden mijn vitaliteit positief",
-  "Ik weet wat mijn persoonlijke levensdoel of missie is",
-  "Ik handel in mijn werk op een eerlijke en integere manier",
-  "Ik vind voldoening in wat ik dagelijks doe",
-  "Ik zoek bewust een omgeving die aansluit bij mijn waarden en normen",
-  "Ik weet waar ik voor sta en laat dat zien in mijn gedrag",
-  "Ik ervaar dat mijn werk bijdraagt aan iets groters dan alleen mezelf"]}
+  "Ik voel de motivatie om goed voor mezelf te zorgen in de tweede helft van mijn leven",
+  "Ik geloof dat ik mijn vitaliteit ook op deze leeftijd nog echt kan verbeteren",
+  "Ik weet wat ik nodig heb om de komende jaren vitaal en sterk te blijven",
+  "Ik geloof dat kleine aanpassingen in mijn leefstijl een groot verschil maken",
+  "Ik neem regelmatig de tijd om stil te staan bij hoe het écht met me gaat",
+  "Ik durf mijn eigen behoeften voorop te stellen zonder me schuldig te voelen"]},
+ {key:"Fysiologisch",lab:"Fysiologisch",sub:"Lichaam & leefstijl",color:"#C2714A",q:[
+  "Ik eet voeding die past bij wat mijn lichaam in deze fase nodig heeft",
+  "Ik beweeg genoeg om mijn spieren en botten sterk te houden",
+  "Ik slaap goed door en word uitgerust wakker",
+  "Ik neem voldoende rust en ontspanning gedurende mijn week",
+  "Ik herken signalen van mijn lichaam, zoals opvliegers, vermoeidheid of pijn, en doe er iets mee",
+  "Ik voel me prettig en op mijn gemak in mijn lichaam zoals het nu is",
+  "Ik drink voldoende water en let bewust op wat ik binnenkrijg",
+  "Ik ga bewust om met alcohol, suiker en cafeïne",
+  "Ik gun mezelf voldoende hersteltijd na drukke of inspannende periodes",
+  "Ik ervaar een goede energiebalans over de dag"]},
+ {key:"Psychologisch",lab:"Psychologisch",sub:"Mindset & zelfbewustzijn",color:"#7A5A70",q:[
+  "Ik begrijp hoe mijn gedachten en overtuigingen mijn gevoel beïnvloeden",
+  "Ik kan op een gezonde manier omgaan met wisselende stemmingen en emoties",
+  "Ik waardeer mezelf, los van mijn uiterlijk of mijn leeftijd",
+  "Ik weet hoe ik veerkrachtig omga met tegenslagen",
+  "Ik geloof dat ik kan blijven groeien, ook na mijn vijftigste",
+  "Ik herken wanneer ik te streng of te veeleisend voor mezelf ben en kan dat loslaten",
+  "Ik leef en werk vanuit vertrouwen in plaats van vanuit zorgen",
+  "Ik heb een helder beeld van mijn sterke kanten en wat mij waardevol maakt",
+  "Ik maak bewuste keuzes in plaats van te doen wat anderen van me verwachten",
+  "Ik kan mijn hoofd leegmaken en loskomen van piekeren"]},
+ {key:"Ecologisch",lab:"Ecologisch",sub:"Omgeving & sociale context",color:"#7E9068",q:[
+  "Ik begeef me in een omgeving die me energie geeft, thuis en daarbuiten",
+  "Ik ervaar een goede balans tussen zorgen voor anderen en zorgen voor mezelf",
+  "Ik voel me gezien en gewaardeerd door de mensen om me heen",
+  "Ik ervaar een gezonde balans tussen inspanning en ontspanning in mijn leven",
+  "Ik heb warme, ondersteunende relaties waar ik op kan bouwen",
+  "Ik durf grenzen te stellen en 'nee' te zeggen als iets me te veel wordt",
+  "Mijn omgeving ondersteunt me in gezond en vitaal ouder worden",
+  "Ik voel me gehoord in mijn relatie(s) en directe omgeving",
+  "Ik omring me met mensen die me goeddoen en inspireren",
+  "Ik kan goed omgaan met veranderingen om me heen, zoals kinderen die uitvliegen of de zorg voor ouders"]},
+ {key:"Filosofisch",lab:"Filosofisch",sub:"Zingeving & waarden",color:"#C98A54",q:[
+  "Ik ervaar dat mijn leven zin en richting heeft",
+  "Ik doe dingen die aansluiten bij wat ik écht belangrijk vind",
+  "Ik kan mijn talenten en levenservaring goed benutten",
+  "Mijn waarden helpen me om gezonde keuzes te maken",
+  "Ik weet wat ik wil met deze fase van mijn leven",
+  "Ik leef in lijn met wie ik werkelijk ben",
+  "Ik vind voldoening in mijn dagelijks leven",
+  "Ik kies bewust voor een omgeving die bij mijn waarden past",
+  "Ik weet waar ik voor sta en laat dat ook zien",
+  "Ik ervaar dat ik van betekenis ben voor anderen en voor iets groters dan mezelf"]}
 ];
 const REFLECT_Q=["Wat valt je op in je vitaliteitswiel?","Welke dimensie vraagt de meeste aandacht?","Hoe ziet jouw ideale vitaliteit eruit?","Eerste concrete stap deze week"];
 const LS="zinsane_vitascan_v1";
@@ -713,7 +715,7 @@ function doPrint(){
   if(!embedded){ window.print(); return; }   // normal page (e.g. hosted on your site)
   // embedded in an iframe (e.g. claude.ai preview): open a standalone print window
   const doc='<!doctype html><html lang="nl"><head><meta charset="utf-8">'
-    +'<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">'
+    +'<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Allura&display=swap" rel="stylesheet">'
     +document.querySelector('style').outerHTML
     +'<style>body{background:#fff;margin:0}#report{display:block!important}.no-print{display:none!important}.rep-wrap{padding:44px;max-width:820px;margin:0 auto}@media print{.rep-wrap{padding:6mm 4mm}}</style>'
     +'</head><body>'+document.getElementById('report').innerHTML
@@ -727,7 +729,7 @@ function doPrint(){
 /* ---- resultaten naar ZinSane sturen (FormSubmit, zelfde als het contactformulier) ---- */
 function buildSummaryText(){
   var L=[];
-  L.push('VitaView vitaliteitsscan — resultaten');
+  L.push('FITAVIEW vitaliteitsscan — resultaten');
   L.push('Datum: '+(val('datum')||todayNL()));
   L.push('');
   var scored=[];
@@ -757,7 +759,7 @@ async function sendResults(){
       method:'POST',
       headers:{'Content-Type':'application/json','Accept':'application/json'},
       body:JSON.stringify({
-        _subject:'Nieuwe VitaView vitaliteitsscan via ZinSane.nl',
+        _subject:'Nieuwe FITAVIEW vitaliteitsscan via ZinSane.nl',
         _template:'table',
         Naam:naam||'(niet ingevuld)',
         Email:email,
